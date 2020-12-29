@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  title = 'firstapp';
+  title = 'Grocieres App';
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  Saludo() {
+    alert('Hola mundo');
   }
 }
