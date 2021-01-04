@@ -1,0 +1,14 @@
+<ActionBar title="Groceries App" icon="" class="action-bar">
+</ActionBar>
+<StackLayout class="p-20">
+    <ListView [items]="users" (loaded)="onLoaded(event)" (itemLoading)="onItemLoading(event)" (itemTap)="onItemTap(event)" class="list-group">
+        <ng-template let-item="item" let-odd="odd" let-even="even">
+          <StackLayout>
+            <Label [text]="item.name" class="list-group-item"></Label>
+            <Label [text]="item.address" class="list-group-item"></Label>
+            <Label [text]="item.nacionality" class="list-group-item"></Label>
+          </StackLayout>
+        </ng-template>
+    </ListView>
+    <Button text="regresar al Home" (tap)="onNavItemTap('/home')" class="btn btn-primary"></Button>
+</StackLayout>
