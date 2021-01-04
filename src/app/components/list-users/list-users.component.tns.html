@@ -1,0 +1,15 @@
+<ActionBar title="Groceries App" icon="" class="action-bar">
+</ActionBar>
+<StackLayout class="p-20">
+    <ListView [items]="Users" class="list-group" height="75%">
+        <ng-template let-item="item" let-odd="odd" let-even="even">
+            <StackLayout>
+                <Label [text]="item.id" class="list-group-item"></Label>
+                <Label [text]="item.title" class="list-group-item"></Label>
+                <Label [text]="item.body" class="list-group-item"></Label>
+                <!-- <Label [text]="item.country" class="list-group-item"></Label> -->
+            </StackLayout>
+        </ng-template>
+    </ListView>
+    <Button text="regresar al Home" (tap)="onNavItemTap('/home')" class="btn btn-primary"></Button>
+</StackLayout>

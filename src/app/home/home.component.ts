@@ -22,7 +22,11 @@ export class HomeComponent implements OnInit {
   }
 
   Saludo() {
-    if (this.userData.nombre.trim() === '' || this.userData.domicilio.trim() === '' || this.userData.nacionalidad.trim() === '') {
+    if (
+      this.userData.nombre.trim() === '' || 
+      this.userData.domicilio.trim() === '' || 
+      this.userData.nacionalidad.trim() === ''
+    ) {
       alert('Llene todos los campos');
     } else {
       alert('Hola, ' + this.userData.nombre + '\nVives en ' + this.userData.domicilio + '\nY eres de ' + this.userData.nacionalidad);
