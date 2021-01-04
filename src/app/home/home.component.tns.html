@@ -1,7 +1,13 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <ActionBar [title]="title"></ActionBar>
-<StackLayout  class="p-20">
-    <Label [text]="'Welcome to ' + title + '!'" class="h1 text-center" textWrap="true"></Label>
-    <Button text="Button" (tap)="Saludo()"></Button>
-    
+<StackLayout class="p-20">
+    <!-- <Label text="Mi primera App con Nativescript y Angular" class="h1 text-center" textWrap="true"></Label> -->
+    <Label text="Nombre" textWrap="true" width="100%"></Label>
+    <TextField [(ngModel)]='this.userData.nombre' hint="Escribe tu nombre" text="" width="100%"></TextField>
+    <Label text="Domicilio" textWrap="true" width="100%"></Label>
+    <TextField [(ngModel)]='this.userData.domicilio' hint="Escribe tu domicilio" text="" width="100%"></TextField>
+    <Label text="Nacionalidad" textWrap="true" width="100%"></Label>
+    <TextField [(ngModel)]='this.userData.nacionalidad' hint="Escribe tu nacionalidad" text="" width="100%"></TextField>
+    <Button class="button" text="Saludar"  (tap)="Saludo()" width="100%"></Button>
+    <Button text="Ir a login" (tap)="onNavItemTap('/login')"></Button>
 </StackLayout>
