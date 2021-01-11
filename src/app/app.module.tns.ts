@@ -6,7 +6,11 @@ import { AppComponent } from '@src/app/app.component';
 import { HomeComponent } from '@src/app/home/home.component';
 import { LoginComponent } from '@src/app/components/login/login.component';
 import { ListUsersComponent } from '@src/app/components/list-users/list-users.component';
-import { UsersService } from './services/users.service';
+import { UsersService } from '@src/app/services/users/users.service';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { UserDetailsComponent } from '@src/app/components/user-details/user-details.component';
+import { EditUserComponent } from '@src/app/components/edit-user/edit-user.component';
 
 
 // Uncomment and add to NgModule imports if you need to use two-way binding and/or HTTP wrapper
@@ -18,12 +22,16 @@ import { UsersService } from './services/users.service';
     HomeComponent,
     LoginComponent,
     ListUsersComponent,
+    UserDetailsComponent,
+    EditUserComponent,
   ],
   imports: [
     NativeScriptModule,
     AppRoutingModule,
     NativeScriptFormsModule,
-    NativeScriptHttpClientModule
+    HttpClientModule,
+    NativeScriptHttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [UsersService],
   bootstrap: [AppComponent],

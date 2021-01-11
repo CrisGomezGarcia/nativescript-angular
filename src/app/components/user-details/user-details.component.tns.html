@@ -1,0 +1,7 @@
+<ActionBar title="Detalles del usuario" icon="" class="action-bar">
+    <NavigationButton icon="font://&#xf060;" class="fas fas-size-ab" (tap)="goBack()"></NavigationButton>
+    <ActionItem ios.position="left" icon="font://&#xf142;" class="fas fas-size-ab" android.position="actionBar">
+    </ActionItem>
+</ActionBar>
+
+<Button [text]="this.user.name" class="btn btn-primary"></Button>

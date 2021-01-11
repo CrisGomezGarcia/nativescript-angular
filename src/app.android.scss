@@ -2,3 +2,28 @@
 @import 'app-common';
 
 // Place any CSS rules you want to apply only on Android here
+.actionBar {
+    font-size: 10px;
+}
+
+/* .label {
+    font-size: 1px;
+}
+ */
+.button {
+    background-color: rgb(34, 255, 119);
+    color: #fff;
+    margin: 0;
+    width: 100%;
+}
+
+.btn-navigate {
+    background-color: rgb(34, 255, 144);
+    color: #000;
+    width: 100%;
+}
+
+.errorText {
+    color: red;
+    margin-bottom: 25px;
+}

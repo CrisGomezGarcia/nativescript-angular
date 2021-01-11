@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RouterExtensions } from '@nativescript/angular';
+import { Dialogs } from '@nativescript/core';
 
 @Component({
   selector: 'app-login',
@@ -7,40 +9,15 @@ import { RouterExtensions } from '@nativescript/angular';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
-  users = [
-    {
-      name: 'Cristian',
-      address: 'Cuajimalpa',
-      nacionality: 'Mexicana'
-    },
-    {
-      name: 'Itzel',
-      address: 'Huejutla',
-      nacionality: 'Mexicana'
-    },
-    {
-      name: 'Carlos',
-      address: 'Monterrey',
-      nacionality: 'Mexicano'
-    },
-    {
-      name: 'Roxelle',
-      address: 'Waukegan',
-      nacionality: 'EUA'
-    },
-    {
-      name: 'Pedro',
-      address: 'Barcelona',
-      nacionality: 'EUA'
-    }
-  ];
+  form: FormGroup;
 
   constructor(
-    private routerExtensions: RouterExtensions
+    private routerExtensions: RouterExtensions,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
+    this.buildForm();
   }
 
   onNavItemTap(NavItemTap: String) {
@@ -49,6 +26,35 @@ export class LoginComponent implements OnInit {
         name: 'fade'
       }
     });
+  }
+
+  logIn() {
+    if (this.form.valid) {
+      Dialogs.alert('Accedió');
+    } else {
+      Dialogs.alert('Acceso negado');
+    }
+  }
+
+  buildForm() {
+    this.form = this.formBuilder.group({
+      user: ['', [Validators.required]],
+      password: ['', [Validators.required]]
+    });
+  }
+
+  onTap() {
+    localStorage.setItem('key', 'sdfkjhsdfjksdhfsdf');
+    let key = localStorage.getItem('key');
+    Dialogs.alert(key);
+  }
+
+  get userField() {
+    return this.form.get('user');
+  }
+
+  get passwordField() {
+    return this.form.get('password');
   }
 
 }

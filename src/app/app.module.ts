@@ -6,7 +6,9 @@ import { AppComponent } from '@src/app/app.component';
 import { HomeComponent } from '@src/app/home/home.component';
 import { LoginComponent } from '@src/app/components/login/login.component';
 import { ListUsersComponent } from '@src/app/components/list-users/list-users.component';
-import { UsersService } from './services/users.service';
+import { UsersService } from '@src/app/services/users/users.service';
+import { UserDetailsComponent } from '@src/app/components/user-details/user-details.component';
+import { EditUserComponent } from '@src/app/components/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +16,8 @@ import { UsersService } from './services/users.service';
     HomeComponent,
     LoginComponent,
     ListUsersComponent,
+    UserDetailsComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,

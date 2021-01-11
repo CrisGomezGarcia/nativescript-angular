@@ -1,10 +1,8 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<ActionBar title="Nuevo usuario">
-    <ActionItem ios.position="left" icon="font://&#xf2b9;" (tap)="onTapAddressBook('/list')" class="fas fas-size-ab" android.position="actionBar">
-    </ActionItem>
+<ActionBar title="Editar usuario" icon="" class="action-bar">
+    <NavigationButton icon="font://&#xf060;" class="fas fas-size-ab" (tap)="goBack()"></NavigationButton>
 </ActionBar>
 <ScrollView orientation="vertical">
-    <StackLayout class="p-20"> 
+    <StackLayout class="p-20">
         <form [formGroup]="this.form" action="">
             <!-- #region Nombre-->
             <Label text="Nombre" textWrap="true" width="100%"></Label>
@@ -14,7 +12,7 @@
                     textWrap="true"></Label>
             </div>
             <!-- #endregion -->
-    
+
             <!-- #region Apellido-->
             <Label text="Apellido" textWrap="true" width="100%"></Label>
             <TextField formControlName="lastname" hint="Escribe tu primer apellido" text="" width="100%"></TextField>
@@ -23,10 +21,11 @@
                     textWrap="true"></Label>
             </div>
             <!-- #endregion -->
-    
+
             <!-- #region Edad-->
             <Label text="Edad" textWrap="true" width="100%"></Label>
-            <TextField keyboardType="phone" formControlName="age" hint="Escribe tu edad" text="" width="100%"></TextField>
+            <TextField keyboardType="phone" formControlName="age" hint="Escribe tu edad" text="" width="100%">
+            </TextField>
             <div *ngIf="this.ageField.errors && this.ageField.dirty">
                 <Label *ngIf="this.ageField.hasError('required')" text="La edad es requerida" class="errorText"
                     textWrap="true"></Label>
@@ -40,7 +39,7 @@
                     style="margin-top: 0;" textWrap="true"></Label>
             </div>
             <!-- #endregion -->
-    
+
             <!-- #region País-->
             <Label text="País" textWrap="true" width="100%"></Label>
             <TextField formControlName="country" hint="Escribe tu País" text="" width="100%"></TextField>
@@ -50,7 +49,7 @@
             </div>
             <!-- #endregion -->
         </form>
-        <Button [isEnabled]="this.form.invalid ? false : true" class="button" text="Registrar"
-            (tap)="registerUser()"></Button>
+        <Button [isEnabled]="this.form.invalid ? false : true" class="button" text="Guardar"
+            (tap)="updateUser()"></Button>
     </StackLayout>
 </ScrollView>

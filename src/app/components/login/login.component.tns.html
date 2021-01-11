@@ -1,14 +1,26 @@
-<ActionBar title="Groceries App" icon="" class="action-bar">
+<ActionBar title="Iniciar sesión" icon="" class="action-bar">
 </ActionBar>
-<StackLayout class="p-20">
-    <ListView [items]="users" class="list-group">
-        <ng-template let-item="item" let-odd="odd" let-even="even">
-          <StackLayout>
-            <Label [text]="item.name" class="list-group-item"></Label>
-            <Label [text]="item.address" class="list-group-item"></Label>
-            <Label [text]="item.nacionality" class="list-group-item"></Label>
-          </StackLayout>
-        </ng-template>
-    </ListView>
-    <Button text="regresar al Home" (tap)="onNavItemTap('/home')" class="btn btn-primary"></Button>
-</StackLayout>
+<ScrollView orientation="vertical">
+  <StackLayout class="p-20">
+    <form [formGroup]="this.form" action="">
+      <!-- #region Usuario -->
+      <Label text="Usuario" width="100%" textWrap="true"></Label>
+      <TextField formControlName="user" hint="Ingrese su usario" text="" width="100%"></TextField>
+      <div *ngIf="this.userField.errors && this.userField.dirty">
+        <Label *ngIf="this.userField.hasError('required')" text="Usuario requerido" class="errorText"
+          textWrap="true"></Label>
+      </div>
+      <!-- #endregion -->
+
+      <!-- #region Contraseña-->
+      <Label text="Contraseña" width="100%" textWrap="true"></Label>
+      <TextField formControlName="password" hint="Ingrese su contraseña" text="" secure="true" width="100%"></TextField>
+      <div *ngIf="this.passwordField.errors && this.passwordField.dirty">
+        <Label *ngIf="this.passwordField.hasError('required')" text="Contraseña requerida" class="errorText"
+          textWrap="true"></Label>
+      </div>
+      <!-- #endregion -->
+    </form>
+    <Button text="Ingresar" (tap)="onTap()" class="btn btn-primary"></Button>
+  </StackLayout>
+</ScrollView>
