@@ -4,6 +4,7 @@ import { HomeComponent } from '@src/app/home/home.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { ListUsersComponent } from './components/list-users/list-users.component';
 import { LoginComponent } from './components/login/login.component';
+import { NewUserComponent } from './components/new-user/new-user.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 import { GuardUserGuard } from './guards/guard-user.guard';
@@ -18,6 +19,10 @@ export const routes: Routes = [
     path: 'home',
     canActivate: [GuardUserGuard],
     component: HomeComponent,
+  },
+  {
+    path: 'new',
+    component: NewUserComponent
   },
   {
     path: 'login',

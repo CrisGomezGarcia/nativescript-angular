@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RouterExtensions } from '@nativescript/angular';
+import { ApplicationSettings } from '@nativescript/core';
 import { User } from '@src/app/interfaces/user';
 import { UsersService } from '@src/app/services/users/users.service';
 
@@ -34,6 +35,11 @@ export class UserDetailsComponent implements OnInit {
 
   goBack() {
     this.routerExtensions.backToPreviousPage();
+  }
+
+  onTapName() {
+    const token = JSON.parse(ApplicationSettings.getString('token'));
+    console.log(token);
   }
 
 }

@@ -12,9 +12,7 @@ import { UsersService } from '@src/app/services/users/users.service';
   styleUrls: ['./edit-user.component.scss']
 })
 export class EditUserComponent implements OnInit {
-
   user: User;
-
   form: FormGroup;
 
   constructor(

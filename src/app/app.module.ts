@@ -9,6 +9,8 @@ import { ListUsersComponent } from '@src/app/components/list-users/list-users.co
 import { UsersService } from '@src/app/services/users/users.service';
 import { UserDetailsComponent } from '@src/app/components/user-details/user-details.component';
 import { EditUserComponent } from '@src/app/components/edit-user/edit-user.component';
+import { NewUserComponent } from '@src/app/components/new-user/new-user.component';
+import { TabsComponent } from '@src/app/home/components/tabs/tabs.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { EditUserComponent } from '@src/app/components/edit-user/edit-user.compo
     ListUsersComponent,
     UserDetailsComponent,
     EditUserComponent,
+    NewUserComponent,
+    TabsComponent,
   ],
   imports: [
     BrowserModule,

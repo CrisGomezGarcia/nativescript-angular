@@ -1,6 +1,7 @@
 <ActionBar title="Iniciar sesión" icon="" class="action-bar">
 </ActionBar>
-<ScrollView orientation="vertical">
+<ActivityIndicator [busy]="isBusy" color="green" (busyChange)="onBusyChanged($event)" width="65" height="65"></ActivityIndicator>
+<ScrollView *ngIf="isBusy == false" orientation="vertical">
   <StackLayout class="p-20">
     <form [formGroup]="this.form" action="">
       <!-- #region Usuario -->
@@ -21,6 +22,6 @@
       </div>
       <!-- #endregion -->
     </form>
-    <Button text="Ingresar" (tap)="onTap()" class="btn btn-primary"></Button>
+    <Button text="Ingresar" (tap)="logIn()" class="button"></Button>
   </StackLayout>
 </ScrollView>

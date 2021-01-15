@@ -1,7 +1,7 @@
 <ActionBar title="Lista de usuarios" icon="" class="action-bar">
     <NavigationButton icon="font://&#xf060;" class="fas fas-size-ab" (tap)="goBack()"></NavigationButton>
 </ActionBar>
-<ActivityIndicator [busy]="isBusy" color="green" (busyChange)="onBusyChanged($event)" width="65" height="65"></ActivityIndicator>
+<ActivityIndicator [busy]="this.isBusy" color="green" (busyChange)="onBusyChanged($event)" width="65" height="65"></ActivityIndicator>
 <StackLayout class="p-10" *ngIf="isBusy == false" (swipe)="onSwipe($event)">
     <ListView [items]="Users$ | async" class="list-group" height="100%" width="100%" (itemTap)="onItemTap($event)">
         <ng-template let-item="item" let-odd="odd" let-even="even">

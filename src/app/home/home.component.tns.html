@@ -1,56 +1,50 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<ActionBar title="Nuevo usuario">
-    <ActionItem ios.position="left" icon="font://&#xf2b9;" (tap)="onTapAddressBook('/list')" class="fas fas-size-ab" android.position="actionBar">
-    </ActionItem>
-</ActionBar>
-<ScrollView orientation="vertical">
-    <StackLayout class="p-20"> 
-        <form [formGroup]="this.form" action="">
-            <!-- #region Nombre-->
-            <Label text="Nombre" textWrap="true" width="100%"></Label>
-            <TextField formControlName="name" hint="Escribe tu nombre" text="" width="100%"></TextField>
-            <div *ngIf="this.nameField.errors && this.nameField.dirty">
-                <Label *ngIf="this.nameField.hasError('required')" text="Nombre requerido" class="errorText"
-                    textWrap="true"></Label>
-            </div>
-            <!-- #endregion -->
-    
-            <!-- #region Apellido-->
-            <Label text="Apellido" textWrap="true" width="100%"></Label>
-            <TextField formControlName="lastname" hint="Escribe tu primer apellido" text="" width="100%"></TextField>
-            <div *ngIf="this.lastnameField.errors && this.lastnameField.dirty">
-                <Label *ngIf="this.lastnameField.hasError('required')" text="Apellido requerido" class="errorText"
-                    textWrap="true"></Label>
-            </div>
-            <!-- #endregion -->
-    
-            <!-- #region Edad-->
-            <Label text="Edad" textWrap="true" width="100%"></Label>
-            <TextField keyboardType="phone" formControlName="age" hint="Escribe tu edad" text="" width="100%"></TextField>
-            <div *ngIf="this.ageField.errors && this.ageField.dirty">
-                <Label *ngIf="this.ageField.hasError('required')" text="La edad es requerida" class="errorText"
-                    textWrap="true"></Label>
-                <div *ngIf="!this.ageField.hasError('pattern')">
-                    <Label *ngIf="this.ageField.hasError('min')" text="La edad debe ser igual o mayor a 18"
-                        class="errorText" textWrap="true"></Label>
-                    <Label *ngIf="this.ageField.hasError('max')" text="La edad debe ser igual o menor a 100"
-                        class="errorText" textWrap="true"></Label>
-                </div>
-                <Label *ngIf="this.ageField.hasError('pattern')" text="Edad inválida" class="errorText"
-                    style="margin-top: 0;" textWrap="true"></Label>
-            </div>
-            <!-- #endregion -->
-    
-            <!-- #region País-->
-            <Label text="País" textWrap="true" width="100%"></Label>
-            <TextField formControlName="country" hint="Escribe tu País" text="" width="100%"></TextField>
-            <div *ngIf="this.countryField.errors && this.countryField.dirty">
-                <Label *ngIf="this.countryField.hasError('required')" text="País requerido" class="errorText"
-                    textWrap="true"></Label>
-            </div>
-            <!-- #endregion -->
-        </form>
-        <Button [isEnabled]="this.form.invalid ? false : true" class="button" text="Registrar"
-            (tap)="registerUser()"></Button>
-    </StackLayout>
-</ScrollView>
+<GridLayout rows="*" height="100%">
+    <RadSideDrawer>
+        <StackLayout tkDrawerContent>
+            <StackLayout class="stk-drawer-header">
+                <GridLayout rows="*" columns="60, 200">
+                    <Image col="0" src="res://icon"></Image>
+                    <Label col="1" class="drawer-header" text="Menú"></Label>
+                </GridLayout>
+            </StackLayout>
+            <StackLayout class="stk-drawer-menu">
+                <!-- <Label class="drawer-menu-title" text="Navegación"></Label> -->
+                <Label text="&#xf234;    Nuevo usuario" textWrap="true" class="drawer-menu-item fas"
+                    (tap)="onTap('/new')">
+                </Label>
+                <Label text="" textWrap="true" class="line-divider"></Label>
+                <Label text="&#xf03a;     Lista de usuarios" textWrap="true" class="drawer-menu-item fas"
+                    (tap)="onTap('/list')">
+                </Label>
+                <Label text="" textWrap="true" class="line-divider"></Label>
+            </StackLayout>
+            <StackLayout height="10%">
+                <Label text="" textWrap="true" class="line-divider"></Label>
+                <Label text="&#xf2f5;    Salir" textWrap="true" class="drawer-menu-item fas" (tap)="logOut()"></Label>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout tkMainContent height="100%">
+            <ActionBar title="Home">
+                <NavigationButton icon="font://&#xf0c9;" class="fas fas-size-ab" (tap)="onOpenDrawerTap()">
+                </NavigationButton>
+            </ActionBar>
+            <StackLayout *ngIf="isBusy === true" height="100%" class="act-indicator">
+                <ActivityIndicator [busy]="isBusy" color="green" (busyChange)="onBusyChanged($event)" width="65"
+                    height="65"></ActivityIndicator>
+            </StackLayout>
+                <app-tabs></app-tabs>
+        </StackLayout>
+    </RadSideDrawer>
+</GridLayout>
+
+<!-- 
+    <Label class="drawer-menu-title" text="NAVEGACIÓN"></Label>
+                <GridLayout rows="25" columns="50, 200" class="grd-menu-item">
+                    <Image col="0" row="0" src="font://&#xf234;" class="fas"></Image>
+                    <Label col="1" row="0" text="Nuevo usuario" class="drawer-menu-item"></Label>
+                </GridLayout>
+                <GridLayout rows="25" columns="50, 200" class="grd-menu-item" (tap)="onTouch('/list')">
+                    <Image col="0" row="0" src="font://&#xf03a;" class="fas"></Image>
+                    <Label col="1" row="0" text="Lista de usuarios" class="drawer-menu-item"></Label>
+                </GridLayout>
+ -->

@@ -1,0 +1,34 @@
+/* Add mobile styles for the component here.  */
+/* TabStrip {
+    selected-item-color: #00caab;
+    un-selected-item-color: #00caab;
+    highlightColor: #00caab;
+} */
+
+TabStripItem {
+    background-color: #00caab;
+    color: #FFFFFF;
+}
+/* 
+TabStripItem {
+    color: #B68AF7;
+    font-size: 12;
+} */
+
+TabStripItem:active {
+    color: #FFFFFF;
+    
+}
+
+/* TabContentItem.first-tabcontent {
+    background-color: seashell;
+    color: olive;
+}
+TabContentItem.second-tabcontent {
+    background-color: slategray;
+    color: aquamarine;
+}
+TabContentItem.third-tabcontent {
+    background-color: blueviolet;
+    color: antiquewhite;
+} */

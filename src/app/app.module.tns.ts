@@ -12,6 +12,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserDetailsComponent } from '@src/app/components/user-details/user-details.component';
 import { EditUserComponent } from '@src/app/components/edit-user/edit-user.component';
 
+import { NativeScriptUISideDrawerModule } from 'nativescript-ui-sidedrawer/angular';
+import { AuthService } from '@src/app/services/auth/auth.service';
+import { NewUserComponent } from '@src/app/components/new-user/new-user.component';
+import { TabsComponent } from '@src/app/home/components/tabs/tabs.component';
 
 // Uncomment and add to NgModule imports if you need to use two-way binding and/or HTTP wrapper
 // import { NativeScriptFormsModule, NativeScriptHttpClientModule } from '@nativescript/angular';
@@ -24,6 +28,8 @@ import { EditUserComponent } from '@src/app/components/edit-user/edit-user.compo
     ListUsersComponent,
     UserDetailsComponent,
     EditUserComponent,
+    NewUserComponent,
+    TabsComponent,
   ],
   imports: [
     NativeScriptModule,
@@ -31,9 +37,13 @@ import { EditUserComponent } from '@src/app/components/edit-user/edit-user.compo
     NativeScriptFormsModule,
     HttpClientModule,
     NativeScriptHttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NativeScriptUISideDrawerModule
   ],
-  providers: [UsersService],
+  exports: [
+    TabsComponent
+  ],
+  providers: [UsersService, AuthService],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
