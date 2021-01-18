@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 
 // Método para obtener todos los usuarios existentes en la base de datos
 app.get('/users', (req, res) => {
-    connection.query('SELECT * FROM users',
+    connection.query('SELECT * FROM students',
         (err, data, fields) => {
             if (err) {
                 console.error(err);
@@ -32,7 +32,7 @@ app.get('/users', (req, res) => {
 // Método para obtener un solo rgistro de tipo usuario de la base de datos que coincida con la cláusula where
 app.get('/users/:id', (req, res) => {
     let id = req.params.id;
-    connection.query('SELECT * FROM users WHERE id = ?',
+    connection.query('SELECT * FROM students WHERE id = ?',
         [id],
         (err, result, fields) => {
             if (err) {
@@ -82,7 +82,7 @@ app.post('/users', (req, res) => {
     const lastname = req.body.lastname;
     const age = req.body.age;
     const country = req.body.country;
-    connection.query('INSERT INTO users(name, lastname, age, country) VALUES(?, ?, ?, ?)',
+    connection.query('INSERT INTO students(name, lastname, age, country) VALUES(?, ?, ?, ?)',
         [name, lastname, parseInt(age), country],
         (err, result) => {
             if (err) {
@@ -98,7 +98,7 @@ app.post('/users', (req, res) => {
 // Método para eliminar un registro de la tabla de la base de datos
 app.delete('/users/:id', (req, res) => {
     let id = req.params.id;
-    connection.query('DELETE FROM users WHERE id = ?',
+    connection.query('DELETE FROM students WHERE id = ?',
         [id],
         (err, result) => {
             if (err) {
@@ -118,7 +118,7 @@ app.put('/users', (req, res) => {
     const lastname = req.body.lastname;
     const age = req.body.age;
     const country = req.body.country;
-    connection.query('UPDATE users SET name = ?, lastname = ?, age = ?, country = ? WHERE id = ?',
+    connection.query('UPDATE students SET name = ?, lastname = ?, age = ?, country = ? WHERE id = ?',
         [name, lastname, age, country, id],
         (err, result) => {
             if (err) {
