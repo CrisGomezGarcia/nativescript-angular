@@ -17,9 +17,6 @@
                     (tap)="onTap('/list')">
                 </Label>
                 <Label text="" textWrap="true" class="line-divider"></Label>
-            </StackLayout>
-            <StackLayout height="10%">
-                <Label text="" textWrap="true" class="line-divider"></Label>
                 <Label text="&#xf2f5;    Salir" textWrap="true" class="drawer-menu-item fas" (tap)="logOut()"></Label>
             </StackLayout>
         </StackLayout>
@@ -32,7 +29,7 @@
                 <ActivityIndicator [busy]="isBusy" color="green" (busyChange)="onBusyChanged($event)" width="65"
                     height="65"></ActivityIndicator>
             </StackLayout>
-                <app-tabs></app-tabs>
+            <app-tabs></app-tabs>
         </StackLayout>
     </RadSideDrawer>
 </GridLayout>
