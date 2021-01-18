@@ -38,15 +38,15 @@ export class HomeComponent implements OnInit {
 
   logOut() {
     this.isBusy = true;
-    this.onCloseDrawerTap();
+    /* this.onCloseDrawerTap(); */
     setTimeout(() => {
       this.isBusy = false;
       this.authService.logOut();
     }, 1000);
   }
 
-  onBusyChanged(args: EventData) {
+  /* onBusyChanged(args: EventData) {
     const indicator: ActivityIndicator = <ActivityIndicator>args.object;
     console.log('indicator.busy changed to: ' + indicator.busy);
-  }
+  } */
 }

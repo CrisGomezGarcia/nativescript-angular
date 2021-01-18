@@ -26,7 +26,7 @@
                 </NavigationButton>
             </ActionBar>
             <StackLayout *ngIf="isBusy === true" height="100%" class="act-indicator">
-                <ActivityIndicator [busy]="isBusy" color="green" (busyChange)="onBusyChanged($event)" width="65"
+                <ActivityIndicator [busy]="isBusy" color="green" width="65"
                     height="65"></ActivityIndicator>
             </StackLayout>
             <app-tabs></app-tabs>
