@@ -11,37 +11,14 @@
                     <Label col="1" class="drawer-header" text="Menú"></Label>
                 </GridLayout>
             </StackLayout>
-            <StackLayout class="stk-drawer-menu">
-                <!-- <Label class="drawer-menu-title" text="Navegación"></Label> -->
-                <Label text="&#xf234;    Nuevo usuario" textWrap="true" class="drawer-menu-item fas"
-                    (tap)="onTap('/new')">
-                </Label>
-                <Label text="" textWrap="true" class="line-divider"></Label>
-                <Label text="&#xf03a;     Lista de usuarios" textWrap="true" class="drawer-menu-item fas"
-                    (tap)="onTap('/list')">
-                </Label>
-                <Label text="" textWrap="true" class="line-divider"></Label>
-                <Label text="&#xf2f5;    Salir" textWrap="true" class="drawer-menu-item fas" (tap)="logOut()"></Label>
+            <StackLayout height="100%">
+                <Button text="&#xf234;    Nuevo usuario" class="fas" (tap)="onTap('/new')"></Button>
+                <Button text="&#xf03a;     Lista de usuarios" class="fas" (tap)="onTap('/list')"></Button>
+                <!-- <Button text="&#xf2f5;    Salir" class="fas" (tap)="logOut()"></Button> -->
             </StackLayout>
         </StackLayout>
         <StackLayout tkMainContent height="100%">
-            <StackLayout *ngIf="isBusy === true" height="100%" class="act-indicator">
-                <ActivityIndicator [busy]="isBusy" color="green" width="65"
-                    height="65"></ActivityIndicator>
-            </StackLayout>
-            <app-tabs *ngIf="isBusy === false"></app-tabs>
+            <app-tabs></app-tabs>
         </StackLayout>
     </RadSideDrawer>
 </GridLayout>
-
-<!-- 
-    <Label class="drawer-menu-title" text="NAVEGACIÓN"></Label>
-                <GridLayout rows="25" columns="50, 200" class="grd-menu-item">
-                    <Image col="0" row="0" src="font://&#xf234;" class="fas"></Image>
-                    <Label col="1" row="0" text="Nuevo usuario" class="drawer-menu-item"></Label>
-                </GridLayout>
-                <GridLayout rows="25" columns="50, 200" class="grd-menu-item" (tap)="onTouch('/list')">
-                    <Image col="0" row="0" src="font://&#xf03a;" class="fas"></Image>
-                    <Label col="1" row="0" text="Lista de usuarios" class="drawer-menu-item"></Label>
-                </GridLayout>
- -->

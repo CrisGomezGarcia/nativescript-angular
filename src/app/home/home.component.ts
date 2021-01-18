@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { RouterExtensions } from '@nativescript/angular';
-import { ActivityIndicator, EventData } from '@nativescript/core';
+import { ActivityIndicator, Dialogs, EventData } from '@nativescript/core';
 import { RadSideDrawerComponent } from 'nativescript-ui-sidedrawer/angular';
 import { AuthService } from '../services/auth/auth.service';
 
@@ -11,7 +11,7 @@ import { AuthService } from '../services/auth/auth.service';
 })
 export class HomeComponent implements OnInit {
   title = 'Groceries App';
-  isBusy: Boolean = false;
+  
 
   @ViewChild(RadSideDrawerComponent, { static: false }) public drawerComponent: RadSideDrawerComponent;
   onOpenDrawerTap() {
@@ -23,7 +23,6 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private routerExtensions: RouterExtensions,
-    private authService: AuthService
   ) { }
 
   ngOnInit() { }
@@ -35,18 +34,4 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-
-  logOut() {
-    this.isBusy = true;
-    this.onCloseDrawerTap();
-    setTimeout(() => {
-      this.isBusy = false;
-      this.authService.logOut();
-    }, 1500);
-  }
-
-  /* onBusyChanged(args: EventData) {
-    const indicator: ActivityIndicator = <ActivityIndicator>args.object;
-    console.log('indicator.busy changed to: ' + indicator.busy);
-  } */
 }

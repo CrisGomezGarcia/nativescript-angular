@@ -1,33 +1,21 @@
-/* Add mobile styles for the component here.  */
-/* TabStrip {
-    selected-item-color: #00caab;
-    un-selected-item-color: #00caab;
-    highlightColor: #00caab;
-} */
-
 TabStripItem {
     background-color: #00caab;
     color: #FFFFFF;
 }
-/* 
-TabStripItem {
-    color: #B68AF7;
-    font-size: 12;
-} */
 
 TabStripItem:active {
     color: #FFFFFF;
 }
 
-/* TabContentItem.first-tabcontent {
-    background-color: seashell;
-    color: olive;
+Button {
+    android-elevation: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 15;
+    margin: 0;
+    /* text-align: center; */
 }
-TabContentItem.second-tabcontent {
-    background-color: slategray;
-    color: aquamarine;
+
+.activityIndicator {
+    vertical-align: center;
 }
-TabContentItem.third-tabcontent {
-    background-color: blueviolet;
-    color: antiquewhite;
-} */
