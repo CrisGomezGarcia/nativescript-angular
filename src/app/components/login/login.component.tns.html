@@ -1,6 +1,6 @@
 <ActionBar title="Iniciar sesión" icon="" class="action-bar">
 </ActionBar>
-<ActivityIndicator [busy]="isBusy" color="green" (busyChange)="onBusyChanged($event)" width="65" height="65"></ActivityIndicator>
+<ActivityIndicator [busy]="isBusy" color="green" width="65" height="65"></ActivityIndicator>
 <ScrollView *ngIf="isBusy == false" orientation="vertical">
   <StackLayout class="p-20">
     <form [formGroup]="this.form" action="">

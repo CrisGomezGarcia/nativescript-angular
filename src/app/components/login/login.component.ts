@@ -66,9 +66,9 @@ export class LoginComponent implements OnInit {
     return this.form.get('password');
   }
 
-  onBusyChanged(args: EventData) {
+  /* onBusyChanged(args: EventData) {
     const indicator: ActivityIndicator = <ActivityIndicator>args.object;
     console.log('indicator.busy changed to: ' + indicator.busy);
-  }
+  } */
 
 }

@@ -29,7 +29,7 @@
                 <ActivityIndicator [busy]="isBusy" color="green" width="65"
                     height="65"></ActivityIndicator>
             </StackLayout>
-            <app-tabs></app-tabs>
+            <app-tabs *ngIf="isBusy === false"></app-tabs>
         </StackLayout>
     </RadSideDrawer>
 </GridLayout>
