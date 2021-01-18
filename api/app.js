@@ -45,25 +45,6 @@ app.get('/users/:id', (req, res) => {
         });
 });
 
-// Método para insertar un nuevo registro de tipo usuario en la tabla de la base de datos
-app.post('/users', (req, res) => {
-    const name = req.body.name;
-    const lastname = req.body.lastname;
-    const age = req.body.age;
-    const country = req.body.country;
-    connection.query('INSERT INTO users(name, lastname, age, country) VALUES(?, ?, ?, ?)',
-        [name, lastname, parseInt(age), country],
-        (err, result) => {
-            if (err) {
-                res.json({ "error": true });
-                console.error(err);
-            } else {
-                /* console.info(result); */
-                res.json({ "error": false });
-            }
-        });
-});
-
 // Método para hacer el logueo de un usuario y guardar su token
 app.post('/users/login', (req, res) => {
     const user = req.body.user;
@@ -72,7 +53,7 @@ app.post('/users/login', (req, res) => {
     let success = false;
     connection.query('SELECT username, token FROM users_sessions WHERE username = ? AND password = MD5(?)',
         [user, password],
-        (err, result, fields) => {
+        (err, result) => {
             if (err) {
                 res.json({ "error": true });
                 console.error(err);
@@ -91,6 +72,25 @@ app.post('/users/login', (req, res) => {
                         "success": success
                     }
                 });
+            }
+        });
+});
+
+// Método para insertar un nuevo registro de tipo usuario en la tabla de la base de datos
+app.post('/users', (req, res) => {
+    const name = req.body.name;
+    const lastname = req.body.lastname;
+    const age = req.body.age;
+    const country = req.body.country;
+    connection.query('INSERT INTO users(name, lastname, age, country) VALUES(?, ?, ?, ?)',
+        [name, lastname, parseInt(age), country],
+        (err, result) => {
+            if (err) {
+                res.json({ "error": true });
+                console.error(err);
+            } else {
+                /* console.info(result); */
+                res.json({ "error": false });
             }
         });
 });

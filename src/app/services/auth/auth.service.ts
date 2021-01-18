@@ -31,7 +31,8 @@ export class AuthService {
 
   logIn(DataUser: UserSession): Observable<any> {
     const response = this.http.post(`${environment.baseUrl}/users/login`, DataUser);
-    let result: any, token: any;
+    let result: any;
+    let token: any;
     response.subscribe(
       (data) => {
         result = this.authClass.validSession(data);

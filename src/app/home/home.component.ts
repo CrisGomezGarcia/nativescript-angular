@@ -37,12 +37,12 @@ export class HomeComponent implements OnInit {
   }
 
   logOut() {
+    this.onCloseDrawerTap();
     this.isBusy = true;
-    /* this.onCloseDrawerTap(); */
     setTimeout(() => {
       this.isBusy = false;
       this.authService.logOut();
-    }, 1000);
+    }, 1500);
   }
 
   /* onBusyChanged(args: EventData) {

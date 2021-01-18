@@ -1,3 +1,7 @@
+<ActionBar title="Home">
+    <NavigationButton icon="font://&#xf0c9;" class="fas fas-size-ab" (tap)="onOpenDrawerTap()">
+    </NavigationButton>
+</ActionBar>
 <GridLayout rows="*" height="100%">
     <RadSideDrawer>
         <StackLayout tkDrawerContent>
@@ -21,10 +25,6 @@
             </StackLayout>
         </StackLayout>
         <StackLayout tkMainContent height="100%">
-            <ActionBar title="Home">
-                <NavigationButton icon="font://&#xf0c9;" class="fas fas-size-ab" (tap)="onOpenDrawerTap()">
-                </NavigationButton>
-            </ActionBar>
             <StackLayout *ngIf="isBusy === true" height="100%" class="act-indicator">
                 <ActivityIndicator [busy]="isBusy" color="green" width="65"
                     height="65"></ActivityIndicator>
