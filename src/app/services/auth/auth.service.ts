@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '@src/environments/environment';
 import { ApplicationSettings } from '@nativescript/core';
-import { UserSession } from '@src/app/interfaces/user_session';
 import { AuthClass } from '@src/app/classes/auth';
 import { RouterExtensions } from '@nativescript/angular';
+import { StudentSession } from '@src/app/interfaces/student_session';
 
 @Injectable({
   providedIn: 'root'
@@ -20,24 +20,24 @@ export class AuthService {
   ) {
   }
 
-  hasUser() {
-    if (ApplicationSettings.getString('token')) {
-      if (ApplicationSettings.getString('token') !== 'undefined') {
+  hasStudent() {
+    if (ApplicationSettings.getString('matricule')) {
+      if (ApplicationSettings.getString('matricule') !== 'undefined') {
         return true;
       }
     }
     return false;
   }
 
-  logIn(DataUser: UserSession): Observable<any> {
-    const response = this.http.post(`${environment.baseUrl}/users/login`, DataUser);
+  logIn(studentSession: StudentSession): Observable<any> {
+    const response = this.http.post(`${environment.baseUrl}/students/login`, studentSession);
     let result: any;
-    let token: any;
+    let matricule: any;
     response.subscribe(
       (data) => {
         result = this.authClass.validSession(data);
-        token = result.token;
-        ApplicationSettings.setString('token', token);
+        matricule = result.matricule;
+        ApplicationSettings.setString('matricule', matricule);
         return true;
       }, error => {
         console.log(error);
@@ -58,7 +58,7 @@ export class AuthService {
   }
 
   logOut() {
-    ApplicationSettings.remove('token');
+    ApplicationSettings.remove('matricule');
     this.routerExtensions.navigate(['/login'], {
       transition: {
         name: 'fade'

@@ -5,17 +5,18 @@ import { AppRoutingModule } from '@src/app/app-routing.module';
 import { AppComponent } from '@src/app/app.component';
 import { HomeComponent } from '@src/app/home/home.component';
 import { LoginComponent } from '@src/app/components/login/login.component';
-import { ListUsersComponent } from '@src/app/components/list-users/list-users.component';
-import { UsersService } from '@src/app/services/users/users.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UserDetailsComponent } from '@src/app/components/user-details/user-details.component';
-import { EditUserComponent } from '@src/app/components/edit-user/edit-user.component';
 
 import { NativeScriptUISideDrawerModule } from 'nativescript-ui-sidedrawer/angular';
 import { AuthService } from '@src/app/services/auth/auth.service';
-import { NewUserComponent } from '@src/app/components/new-user/new-user.component';
 import { TabsComponent } from '@src/app/home/components/tabs/tabs.component';
+import { StudentsListComponent } from '@src/app/components/students-list/students-list.component';
+import { StudentsEditComponent } from '@src/app/components/students-edit/students-edit.component';
+import { StudentsDetailsComponent } from '@src/app/components/students-details/students-details.component';
+import { StudentsNewComponent } from '@src/app/components/students-new/students-new.component';
+import { StudentService } from '@src/app/services/students/student.service';
+import { CoursesAssignComponent } from '@src/app/components/courses-assign/courses-assign.component';
 
 // Uncomment and add to NgModule imports if you need to use two-way binding and/or HTTP wrapper
 // import { NativeScriptFormsModule, NativeScriptHttpClientModule } from '@nativescript/angular';
@@ -25,11 +26,12 @@ import { TabsComponent } from '@src/app/home/components/tabs/tabs.component';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    ListUsersComponent,
-    UserDetailsComponent,
-    EditUserComponent,
-    NewUserComponent,
     TabsComponent,
+    StudentsListComponent,
+    StudentsEditComponent,
+    StudentsDetailsComponent,
+    StudentsNewComponent,
+    CoursesAssignComponent,
   ],
   imports: [
     NativeScriptModule,
@@ -43,7 +45,7 @@ import { TabsComponent } from '@src/app/home/components/tabs/tabs.component';
   exports: [
     TabsComponent
   ],
-  providers: [UsersService, AuthService],
+  providers: [StudentService, AuthService],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })

@@ -1,9 +1,15 @@
-<ActionBar title="Nuevo usuario" icon="" class="action-bar">
+<ActionBar title="Editar estudiante" icon="" class="action-bar">
     <NavigationButton icon="font://&#xf060;" class="fas fas-size-ab" (tap)="goBack()"></NavigationButton>
 </ActionBar>
 <ScrollView orientation="vertical">
     <StackLayout class="p-20">
         <form [formGroup]="this.form" action="">
+            <!-- #region Matricula-->
+            <Label text="Matrícula" textWrap="true" width="100%"></Label>
+            <TextField editable="false" formControlName="matricule" hint="Escribe tu matrícula" text="" width="100%">
+            </TextField>
+            <!-- #endregion -->
+
             <!-- #region Nombre-->
             <Label text="Nombre" textWrap="true" width="100%"></Label>
             <TextField formControlName="name" hint="Escribe tu nombre" text="" width="100%"></TextField>
@@ -15,22 +21,20 @@
 
             <!-- #region Apellido-->
             <Label text="Apellido" textWrap="true" width="100%"></Label>
-            <TextField formControlName="lastname" hint="Escribe tu primer apellido" text="" width="100%">
-            </TextField>
+            <TextField formControlName="lastname" hint="Escribe tu primer apellido" text="" width="100%"></TextField>
             <div *ngIf="this.lastnameField.errors && this.lastnameField.dirty">
-                <Label *ngIf="this.lastnameField.hasError('required')" text="Apellido requerido"
-                    class="errorText" textWrap="true"></Label>
+                <Label *ngIf="this.lastnameField.hasError('required')" text="Apellido requerido" class="errorText"
+                    textWrap="true"></Label>
             </div>
             <!-- #endregion -->
 
             <!-- #region Edad-->
             <Label text="Edad" textWrap="true" width="100%"></Label>
-            <TextField keyboardType="phone" formControlName="age" hint="Escribe tu edad" text=""
-                width="100%">
+            <TextField keyboardType="phone" formControlName="age" hint="Escribe tu edad" text="" width="100%">
             </TextField>
             <div *ngIf="this.ageField.errors && this.ageField.dirty">
-                <Label *ngIf="this.ageField.hasError('required')" text="La edad es requerida"
-                    class="errorText" textWrap="true"></Label>
+                <Label *ngIf="this.ageField.hasError('required')" text="La edad es requerida" class="errorText"
+                    textWrap="true"></Label>
                 <div *ngIf="!this.ageField.hasError('pattern')">
                     <Label *ngIf="this.ageField.hasError('min')" text="La edad debe ser igual o mayor a 18"
                         class="errorText" textWrap="true"></Label>
@@ -46,12 +50,12 @@
             <Label text="País" textWrap="true" width="100%"></Label>
             <TextField formControlName="country" hint="Escribe tu País" text="" width="100%"></TextField>
             <div *ngIf="this.countryField.errors && this.countryField.dirty">
-                <Label *ngIf="this.countryField.hasError('required')" text="País requerido"
-                    class="errorText" textWrap="true"></Label>
+                <Label *ngIf="this.countryField.hasError('required')" text="País requerido" class="errorText"
+                    textWrap="true"></Label>
             </div>
             <!-- #endregion -->
         </form>
-        <Button [isEnabled]="this.form.invalid ? false : true" class="button" text="Registrar"
-            (tap)="registerUser()"></Button>
+        <Button [isEnabled]="this.form.invalid ? false : true" class="button" text="Guardar"
+            (tap)="updateStudent()"></Button>
     </StackLayout>
 </ScrollView>

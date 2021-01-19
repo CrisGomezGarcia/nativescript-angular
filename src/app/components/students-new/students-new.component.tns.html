@@ -1,9 +1,21 @@
-<ActionBar title="Editar usuario" icon="" class="action-bar">
+<ActionBar title="Nuevo estudiante" icon="" class="action-bar">
     <NavigationButton icon="font://&#xf060;" class="fas fas-size-ab" (tap)="goBack()"></NavigationButton>
 </ActionBar>
 <ScrollView orientation="vertical">
     <StackLayout class="p-20">
         <form [formGroup]="this.form" action="">
+            <!-- #region Matricula-->
+            <Label text="Matrícula" textWrap="true" width="100%"></Label>
+            <TextField keyboardType="phone" formControlName="matricule" hint="Escribe tu matrícula" text="" width="100%">
+            </TextField>
+            <div *ngIf="this.matriculeField.errors && this.matriculeField.dirty">
+                <Label *ngIf="this.matriculeField.hasError('required')" text="Matrícula requerida" class="errorText"
+                    textWrap="true"></Label>
+                <Label *ngIf="this.matriculeField.hasError('minlength') || this.matriculeField.hasError('maxlength')"
+                    text="Debe tener diez caracteres" class="errorText" textWrap="true"></Label>
+            </div>
+            <!-- #endregion -->
+
             <!-- #region Nombre-->
             <Label text="Nombre" textWrap="true" width="100%"></Label>
             <TextField formControlName="name" hint="Escribe tu nombre" text="" width="100%"></TextField>
@@ -50,6 +62,6 @@
             <!-- #endregion -->
         </form>
         <Button [isEnabled]="this.form.invalid ? false : true" class="button" text="Guardar"
-            (tap)="updateUser()"></Button>
+            (tap)="saveStudent()"></Button>
     </StackLayout>
 </ScrollView>

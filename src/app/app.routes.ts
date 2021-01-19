@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
 
 import { HomeComponent } from '@src/app/home/home.component';
-import { EditUserComponent } from './components/edit-user/edit-user.component';
-import { ListUsersComponent } from './components/list-users/list-users.component';
 import { LoginComponent } from './components/login/login.component';
-import { NewUserComponent } from './components/new-user/new-user.component';
-import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { StudentsDetailsComponent } from './components/students-details/students-details.component';
+import { StudentsEditComponent } from './components/students-edit/students-edit.component';
+import { StudentsListComponent } from './components/students-list/students-list.component';
+import { StudentsNewComponent } from './components/students-new/students-new.component';
 
 import { GuardUserGuard } from './guards/guard-user.guard';
 
@@ -22,7 +22,7 @@ export const routes: Routes = [
   },
   {
     path: 'new',
-    component: NewUserComponent
+    component: StudentsNewComponent
   },
   {
     path: 'login',
@@ -30,14 +30,14 @@ export const routes: Routes = [
   },
   {
     path: 'list',
-    component: ListUsersComponent
+    component: StudentsListComponent
   },
   {
-    path: 'details/:id',
-    component: UserDetailsComponent
+    path: 'details/:matricule',
+    component: StudentsDetailsComponent
   },
   {
-    path: 'edit/:user',
-    component: EditUserComponent
+    path: 'edit/:student',
+    component: StudentsEditComponent
   }
 ];

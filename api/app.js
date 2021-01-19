@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 })
 
 // Método para obtener todos los usuarios existentes en la base de datos
-app.get('/users', (req, res) => {
+app.get('/students', (req, res) => {
     connection.query('SELECT * FROM students',
         (err, data, fields) => {
             if (err) {
@@ -30,10 +30,10 @@ app.get('/users', (req, res) => {
 });
 
 // Método para obtener un solo rgistro de tipo usuario de la base de datos que coincida con la cláusula where
-app.get('/users/:id', (req, res) => {
-    let id = req.params.id;
-    connection.query('SELECT * FROM students WHERE id = ?',
-        [id],
+app.get('/students/:matricule', (req, res) => {
+    let matricule = req.params.matricule;
+    connection.query('SELECT * FROM students WHERE matricule = ?',
+        [matricule],
         (err, result, fields) => {
             if (err) {
                 res.json({ "error": true });
@@ -46,13 +46,13 @@ app.get('/users/:id', (req, res) => {
 });
 
 // Método para hacer el logueo de un usuario y guardar su token
-app.post('/users/login', (req, res) => {
-    const user = req.body.user;
+app.post('/students/login', (req, res) => {
+    const matricule = req.body.matricule;
     const password = req.body.password;
     let data = "";
     let success = false;
-    connection.query('SELECT username, token FROM users_sessions WHERE username = ? AND password = MD5(?)',
-        [user, password],
+    connection.query('SELECT matricule FROM students_session WHERE matricule = ? AND password = MD5(?)',
+        [matricule, password],
         (err, result) => {
             if (err) {
                 res.json({ "error": true });
@@ -77,13 +77,14 @@ app.post('/users/login', (req, res) => {
 });
 
 // Método para insertar un nuevo registro de tipo usuario en la tabla de la base de datos
-app.post('/users', (req, res) => {
+app.post('/students', (req, res) => {
+    const matricule = req.body.matricule;
     const name = req.body.name;
     const lastname = req.body.lastname;
     const age = req.body.age;
     const country = req.body.country;
-    connection.query('INSERT INTO students(name, lastname, age, country) VALUES(?, ?, ?, ?)',
-        [name, lastname, parseInt(age), country],
+    connection.query('INSERT INTO students(matricule, name, lastname, age, country) VALUES(?, ?, ?, ?, ?)',
+        [matricule, name, lastname, parseInt(age), country],
         (err, result) => {
             if (err) {
                 res.json({ "error": true });
@@ -96,10 +97,10 @@ app.post('/users', (req, res) => {
 });
 
 // Método para eliminar un registro de la tabla de la base de datos
-app.delete('/users/:id', (req, res) => {
-    let id = req.params.id;
-    connection.query('DELETE FROM students WHERE id = ?',
-        [id],
+app.delete('/students/:matricule', (req, res) => {
+    const matricule = req.params.matricule;
+    connection.query('DELETE FROM students WHERE matricule = ?',
+        [matricule],
         (err, result) => {
             if (err) {
                 res.json({ "error": true });
@@ -112,14 +113,14 @@ app.delete('/users/:id', (req, res) => {
 });
 
 // Método para actualizar los datos de un registro en la base de datos
-app.put('/users', (req, res) => {
-    const id = req.body.id;
+app.put('/students', (req, res) => {
+    const matricule = req.body.matricule;
     const name = req.body.name;
     const lastname = req.body.lastname;
     const age = req.body.age;
     const country = req.body.country;
-    connection.query('UPDATE students SET name = ?, lastname = ?, age = ?, country = ? WHERE id = ?',
-        [name, lastname, age, country, id],
+    connection.query('UPDATE students SET name = ?, lastname = ?, age = ?, country = ? WHERE matricule = ?',
+        [name, lastname, age, country, matricule],
         (err, result) => {
             if (err) {
                 res.json({ "error": true });

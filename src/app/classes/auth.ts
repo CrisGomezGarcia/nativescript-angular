@@ -1,15 +1,15 @@
 export class AuthClass {
     validSession(Data: any): any {
         if (Data.data.success) {
-            const token = Data.data.fields[0].token;
+            const matricule = Data.data.fields[0].matricule;
             return {
-                token: token,
+                matricule: matricule,
                 url: '/home',
                 sessionApproved: true
             };
         }
         return {
-            token: 'undefined',
+            matricule: 'undefined',
             url: '/login',
             sessionApproved: false
         };

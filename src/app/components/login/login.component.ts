@@ -36,12 +36,12 @@ export class LoginComponent implements OnInit {
     const alertOptions = { title: 'Inicio de sesión', message: '', okButtonText: 'Aceptar' };
     if (this.form.valid) {
       this.authService.logIn(this.form.value);
-      let token: string;
+      let matricule: String;
       setTimeout(() => {
-        token = ApplicationSettings.getString('token');
+        matricule = ApplicationSettings.getString('matricule');
       }, 500);
-      if (token === 'undefined') {
-        Dialogs.alert('Usuario y/o contraseña incorrectos.');
+      if (matricule === 'undefined') {
+        Dialogs.alert('Matrícula y/o contraseña incorrectos.');
       } else {
         this.isBusy = true;
       }
@@ -53,13 +53,13 @@ export class LoginComponent implements OnInit {
 
   buildForm() {
     this.form = this.formBuilder.group({
-      user: ['', [Validators.required]],
+      matricule: ['', [Validators.required]],
       password: ['', [Validators.required]]
     });
   }
 
-  get userField() {
-    return this.form.get('user');
+  get matriculeField() {
+    return this.form.get('matricule');
   }
 
   get passwordField() {

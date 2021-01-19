@@ -1,9 +1,9 @@
 <ActionBar title="Lista de estudiantes" icon="" class="action-bar">
     <NavigationButton icon="font://&#xf060;" class="fas fas-size-ab" (tap)="goBack()"></NavigationButton>
 </ActionBar>
-<ActivityIndicator [busy]="this.isBusy" color="green" (busyChange)="onBusyChanged($event)" width="65" height="65"></ActivityIndicator>
+<ActivityIndicator [busy]="this.isBusy" color="green" width="65" height="65"></ActivityIndicator>
 <StackLayout class="p-10" *ngIf="isBusy == false" (swipe)="onSwipe($event)">
-    <ListView [items]="Users$ | async" class="list-group" height="100%" width="100%" (itemTap)="onItemTap($event)">
+    <ListView [items]="Students$ | async" class="list-group" height="100%" width="100%" (itemTap)="onItemTap($event)">
         <ng-template let-item="item" let-odd="odd" let-even="even">
             <ListView.itemTemplate>
                 <StackLayout orientation="horizontal">
@@ -19,5 +19,3 @@
         </ng-template>
     </ListView>
 </StackLayout>
-
-<!-- (itemTap)="onItemTap($event)" -->

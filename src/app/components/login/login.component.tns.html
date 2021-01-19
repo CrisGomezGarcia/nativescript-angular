@@ -6,9 +6,9 @@
     <form [formGroup]="this.form" action="">
       <!-- #region Usuario -->
       <Label text="Usuario" width="100%" textWrap="true"></Label>
-      <TextField formControlName="user" hint="Ingrese su usario" text="" width="100%"></TextField>
-      <div *ngIf="this.userField.errors && this.userField.dirty">
-        <Label *ngIf="this.userField.hasError('required')" text="Usuario requerido" class="errorText"
+      <TextField formControlName="matricule" hint="Ingrese su matrícula" text="" width="100%"></TextField>
+      <div *ngIf="this.matriculeField.errors && this.matriculeField.dirty">
+        <Label *ngIf="this.matriculeField.hasError('required')" text="Matrícula requerido" class="errorText"
           textWrap="true"></Label>
       </div>
       <!-- #endregion -->
@@ -22,6 +22,6 @@
       </div>
       <!-- #endregion -->
     </form>
-    <Button text="Ingresar" (tap)="logIn()" class="button"></Button>
+    <Button [isEnabled]="this.form.invalid ? false : true" text="Ingresar" (tap)="logIn()" class="button"></Button>
   </StackLayout>
 </ScrollView>
