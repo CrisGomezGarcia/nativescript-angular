@@ -23,7 +23,7 @@ export class StudentService {
   }
 
   deleteStudent(matricule: String): Observable<[]> {
-    return this.http.delete<[]>(`${environment.baseUrl}/students/${matricule}`);
+    return this.http.delete<[]>(`${environment.baseUrl}/information/delete/${matricule}`);
   }
 
   getStudent(matricule: String): Observable<Student> {

@@ -1,6 +1,8 @@
-<ActionBar title="Detalles del estudiante" icon="" class="action-bar">
+<ActionBar [title]="this.student.name" icon="" class="action-bar">
     <NavigationButton icon="font://&#xf060;" class="fas fas-size-ab" (tap)="goBack()"></NavigationButton>
-    <ActionItem ios.position="left" icon="font://&#xf142;" class="fas fas-size-ab" android.position="actionBar">
+    <ActionItem ios.position="left" icon="font://&#xf304;" class="fas fas-size-ab" android.position="actionBar" (tap)="onEditTap()">
+    </ActionItem>
+    <ActionItem ios.position="left" icon="font://&#xf2ed;" class="fas fas-size-ab" android.position="actionBar" (tap)="onDeleteTap()">
     </ActionItem>
 </ActionBar>
 

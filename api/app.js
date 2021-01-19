@@ -179,11 +179,13 @@ app.put('/information/update', (req, res) => {
 
 //#endregion
 
+/* <------------------------------------------------------ Métodos de eliminación ------------------------------------------------------> */
+//#region
 // Método para eliminar un registro de la tabla de la base de datos
-app.delete('/students/:matricule', (req, res) => {
-    const matricule = req.params.matricule;
-    connection.query('DELETE FROM students WHERE matricule = ?',
-        [matricule],
+app.delete('/information/delete/:matricule', (req, res) => {
+    const MATRICULE = req.params.matricule;
+    connection.query('CALL delete_personalInformation(?)',
+        [MATRICULE],
         (err, result) => {
             if (err) {
                 res.json({ "error": true });
@@ -195,7 +197,7 @@ app.delete('/students/:matricule', (req, res) => {
         });
 });
 
-
+//#endregion
 
 
 

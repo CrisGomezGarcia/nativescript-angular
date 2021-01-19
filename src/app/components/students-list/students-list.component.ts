@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Student } from '@src/app/interfaces/student';
 import { StudentService } from '@src/app/services/students/student.service';
@@ -10,7 +10,7 @@ import { Dialogs, ItemEventData, SwipeGestureEventData } from '@nativescript/cor
   templateUrl: './students-list.component.html',
   styleUrls: ['./students-list.component.scss']
 })
-export class StudentsListComponent implements OnInit, OnDestroy {
+export class StudentsListComponent implements OnInit {
 
   Students$: Observable<Student[]>;
   selectedItem: Student;
@@ -26,12 +26,12 @@ export class StudentsListComponent implements OnInit, OnDestroy {
     this.loadStudentsList();
   }
 
-  ngOnDestroy(): void {
-    this.Students$.subscribe().unsubscribe();
-  }
-
   goBack() {
-    this.routerExtensions.backToPreviousPage();
+    this.routerExtensions.navigate(['/home'], {
+      transition: {
+        name: 'fade'
+      }
+    });
   }
 
   onNavItemTap(NavItemTap: String) {
@@ -108,25 +108,20 @@ export class StudentsListComponent implements OnInit, OnDestroy {
     const direction = args.direction;
     if (direction === 8) {
       this.isBusy = true;
-      setTimeout(() => {
-        this.isBusy = false;
-      }, 1500);
+      this.loadStudentsList();
     }
   }
 
   loadStudentsList() {
-    try {
-      this.Students$ = this.studentService.getStudents();
-      this.Students$.subscribe(data => {
+    this.Students$ = this.studentService.getStudents();
+    this.Students$.subscribe(
+      data => {
         this.studentsData = data[0];
       },
-        error => { },
-        () => {
-          this.isBusy = false;
-        });
-    } catch (error) {
-      console.log(error);
-    }
+      error => { },
+      () => {
+        this.isBusy = false;
+      });
   }
 
   onTouch() {

@@ -2,18 +2,19 @@
     <NavigationButton icon="font://&#xf060;" class="fas fas-size-ab" (tap)="goBack()"></NavigationButton>
 </ActionBar>
 <ActivityIndicator [busy]="this.isBusy" color="green" width="65" height="65"></ActivityIndicator>
-<StackLayout class="p-10" *ngIf="isBusy == false" (swipe)="onSwipe($event)">
+<StackLayout class="p-10" *ngIf="isBusy === false" (swipe)="onSwipe($event)">
     <ListView [items]="studentsData" class="list-group" height="100%" width="100%" (itemTap)="onItemTap($event)">
         <ng-template let-item="item" let-odd="odd" let-even="even">
             <ListView.itemTemplate>
                 <StackLayout orientation="horizontal">
-                    <GridLayout columns="*, 32, 20, 28" rows="*">
+                    <Label [text]="item.name + ' ' + item.lastname" class="list-group-item"></Label>
+                    <!-- <GridLayout columns="*, 32, 20, 28" rows="*">
                         <Label col="0" [text]="item.name + ' ' + item.lastname" class="list-group-item"></Label>
                         <Image col="1" src="font://&#xf304;" stretch="none" class="fas fas-size-lv"
                             (tap)="onEditTap(item)"></Image>
                         <Image col="3" src="font://&#xf2ed;" stretch="none" class="fas fas-size-lv"
                             (tap)="onDeleteTap(item)"></Image>
-                    </GridLayout>
+                    </GridLayout> -->
                 </StackLayout>
             </ListView.itemTemplate>
         </ng-template>
