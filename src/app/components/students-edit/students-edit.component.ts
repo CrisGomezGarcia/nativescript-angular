@@ -62,7 +62,7 @@ export class StudentsEditComponent implements OnInit {
     });
   }
 
-  //Propiedades get para poder hacer las validaciones en el formulario que se encuentra en el archivo .tns.html.
+  // Propiedades get para poder hacer las validaciones en el formulario que se encuentra en el archivo .tns.html.
   /* get matriculeField() {
     return this.form.get('matricule');
   } */

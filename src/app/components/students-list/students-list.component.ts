@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Student } from '@src/app/interfaces/student';
 import { StudentService } from '@src/app/services/students/student.service';
@@ -10,11 +10,12 @@ import { Dialogs, ItemEventData, SwipeGestureEventData } from '@nativescript/cor
   templateUrl: './students-list.component.html',
   styleUrls: ['./students-list.component.scss']
 })
-export class StudentsListComponent implements OnInit {
+export class StudentsListComponent implements OnInit, OnDestroy {
 
   Students$: Observable<Student[]>;
   selectedItem: Student;
   isBusy: Boolean = true;
+  studentsData: any;
 
   constructor(
     private studentService: StudentService,
@@ -23,6 +24,10 @@ export class StudentsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadStudentsList();
+  }
+
+  ngOnDestroy(): void {
+    this.Students$.subscribe().unsubscribe();
   }
 
   goBack() {
@@ -79,7 +84,8 @@ export class StudentsListComponent implements OnInit {
     const index = evt.index;
     this.Students$.subscribe(
       data => {
-        this.selectedItem = data[index];
+        this.selectedItem = data[0][index];
+        /* console.log(this.selectedItem['matricule']); */
         this.openDetails(this.selectedItem);
       },
       error => {
@@ -110,12 +116,25 @@ export class StudentsListComponent implements OnInit {
 
   loadStudentsList() {
     try {
-      setTimeout(() => {
-        this.Students$ = this.studentService.getStudents();
-        this.isBusy = false;
-      }, 1500);
+      this.Students$ = this.studentService.getStudents();
+      this.Students$.subscribe(data => {
+        this.studentsData = data[0];
+      },
+        error => { },
+        () => {
+          this.isBusy = false;
+        });
     } catch (error) {
       console.log(error);
     }
+  }
+
+  onTouch() {
+    this.routerExtensions.navigate(['/new'],
+      {
+        transition: {
+          name: 'fade'
+        }
+      });
   }
 }

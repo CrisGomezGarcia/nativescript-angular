@@ -4,4 +4,5 @@ export interface Student {
     lastname: string;
     age: string;
     country: string;
+    clasification: string;
 }

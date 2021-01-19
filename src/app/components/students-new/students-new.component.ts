@@ -52,7 +52,7 @@ export class StudentsNewComponent implements OnInit {
 
   private buildForm() {
     this.form = this.formBuilder.group({
-      matricule: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      matricule: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('[0-9]*')]],
       name: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
       age: ['', [Validators.required, Validators.min(18), Validators.max(100), Validators.pattern('[0-9]*')]],

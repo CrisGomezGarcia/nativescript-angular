@@ -27,7 +27,7 @@ export class StudentsDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.studentService.getStudent(this.matricule)
       .subscribe(data => {
-        this.student = data[0];
+        this.student = data[0][0];
       });
   }
 

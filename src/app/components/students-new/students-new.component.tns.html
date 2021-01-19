@@ -6,13 +6,20 @@
         <form [formGroup]="this.form" action="">
             <!-- #region Matricula-->
             <Label text="Matrícula" textWrap="true" width="100%"></Label>
-            <TextField keyboardType="phone" formControlName="matricule" hint="Escribe tu matrícula" text="" width="100%">
+            <TextField keyboardType="phone" formControlName="matricule" hint="Escribe tu matrícula" text=""
+                width="100%">
             </TextField>
             <div *ngIf="this.matriculeField.errors && this.matriculeField.dirty">
                 <Label *ngIf="this.matriculeField.hasError('required')" text="Matrícula requerida" class="errorText"
                     textWrap="true"></Label>
-                <Label *ngIf="this.matriculeField.hasError('minlength') || this.matriculeField.hasError('maxlength')"
-                    text="Debe tener diez caracteres" class="errorText" textWrap="true"></Label>
+                <div *ngIf="!this.matriculeField.hasError('pattern')">
+                    <Label
+                        *ngIf="this.matriculeField.hasError('minlength') || this.matriculeField.hasError('maxlength')"
+                        text="Debe tener diez caracteres" class="errorText" textWrap="true"></Label>
+                </div>
+                <Label
+                        *ngIf="this.matriculeField.hasError('pattern')"
+                        text="Matrícula inválida" class="errorText" textWrap="true"></Label>
             </div>
             <!-- #endregion -->
 

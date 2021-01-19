@@ -1,4 +1,4 @@
-export interface StudentSession {
+export interface AppSession {
     matricule: String;
     password: String;
 }

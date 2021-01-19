@@ -3,7 +3,7 @@
 </ActionBar>
 <ActivityIndicator [busy]="this.isBusy" color="green" width="65" height="65"></ActivityIndicator>
 <StackLayout class="p-10" *ngIf="isBusy == false" (swipe)="onSwipe($event)">
-    <ListView [items]="Students$ | async" class="list-group" height="100%" width="100%" (itemTap)="onItemTap($event)">
+    <ListView [items]="studentsData" class="list-group" height="100%" width="100%" (itemTap)="onItemTap($event)">
         <ng-template let-item="item" let-odd="odd" let-even="even">
             <ListView.itemTemplate>
                 <StackLayout orientation="horizontal">
@@ -18,4 +18,9 @@
             </ListView.itemTemplate>
         </ng-template>
     </ListView>
+</StackLayout>
+<StackLayout class="flt-btn-layout" (touch)="onTouch()">
+    <StackLayout class="float-btn">
+        <Label text="+" class="flt-btn-text"></Label>
+    </StackLayout>
 </StackLayout>

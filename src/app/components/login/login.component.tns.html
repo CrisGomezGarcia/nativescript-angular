@@ -5,11 +5,18 @@
   <StackLayout class="p-20">
     <form [formGroup]="this.form" action="">
       <!-- #region Usuario -->
-      <Label text="Usuario" width="100%" textWrap="true"></Label>
-      <TextField formControlName="matricule" hint="Ingrese su matrícula" text="" width="100%"></TextField>
+      <Label text="Matrícula" width="100%" textWrap="true"></Label>
+      <TextField keyboardType="phone" formControlName="matricule" hint="Ingrese su matrícula" text="" width="100%">
+      </TextField>
       <div *ngIf="this.matriculeField.errors && this.matriculeField.dirty">
-        <Label *ngIf="this.matriculeField.hasError('required')" text="Matrícula requerido" class="errorText"
+        <Label *ngIf="this.matriculeField.hasError('required')" text="Matrícula requerida" class="errorText"
           textWrap="true"></Label>
+        <div *ngIf="!this.matriculeField.hasError('pattern')">
+          <Label *ngIf="this.matriculeField.hasError('minlength') || this.matriculeField.hasError('maxlength')"
+            text="La matrícula debe tener diez dígitos" textWrap="true" class="errorText"></Label>
+        </div>
+        <Label *ngIf="this.matriculeField.hasError('pattern')" text="Matrícula inválida" textWrap="true"
+          class="errorText"></Label>
       </div>
       <!-- #endregion -->
 

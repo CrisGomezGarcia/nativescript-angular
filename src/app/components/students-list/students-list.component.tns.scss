@@ -16,3 +16,24 @@
     border-radius: 100%;
     text-decoration: none;
 }
+
+/* Botón flotante */
+
+.flt-btn-layout {
+    margin-top: 80%;
+    margin-left: 70%;
+}
+
+.float-btn {
+    background-color: #00caab;
+    border-radius: 100%;
+    width: 56;
+    height: 56;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.flt-btn-text {
+    color: #fff;
+    font-size: 36;
+}

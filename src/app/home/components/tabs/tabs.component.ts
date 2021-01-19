@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { RouterExtensions } from '@nativescript/angular';
 import { Dialogs } from '@nativescript/core';
 import { AuthService } from '@src/app/services/auth/auth.service';
 
@@ -11,7 +12,8 @@ export class TabsComponent implements OnInit, OnDestroy {
   isBusy: Boolean = false;
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private routeExtensions: RouterExtensions
   ) { }
 
   ngOnInit(): void {
@@ -26,6 +28,15 @@ export class TabsComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.authService.logOut();
     }, 1500);
+  }
+
+  onTouchStudents() {
+    this.routeExtensions.navigate(['/list'],
+    {
+      transition: {
+        name: 'fade'
+      }
+    })
   }
 
 }

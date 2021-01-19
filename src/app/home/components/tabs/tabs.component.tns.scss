@@ -1,11 +1,11 @@
 TabStripItem {
     background-color: #00caab;
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 15;
 }
 
 TabStripItem:active {
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 Button {
@@ -20,3 +20,67 @@ Button {
 .activityIndicator {
     vertical-align: center;
 }
+
+/* #region para todo layout-home */
+.layout-home {
+    padding: 35px;
+    text-align: center;
+    margin-top: 25px;
+}
+
+.fas-ico {
+    font-size: 45px;
+    height: 150px;
+    width: 200px;
+    padding: 5;
+    border-radius: 10%;
+}
+
+.background-studiants {
+    background-color: #a6ede4;
+}
+
+.studiants-layout {
+    height: 580px;
+    background-color: #75ddd1;
+    color: #fff;
+    border-radius: 10%;
+    margin: 15px;
+}
+
+.background-groups {
+    background-color: #bfbefc;
+}
+
+.groups-layout {
+    height: 580px;
+    background-color: #a2a1fb;
+    color: #fff;
+    border-radius: 10%;
+    margin: 15px;
+}
+
+.background-courses {
+    background-color: #fdbda5;
+}
+
+.courses-layout {
+    height: 580px;
+    background-color: #fb9876;
+    color: #fff;
+    border-radius: 10%;
+    margin: 15px;
+}
+
+.title-card {
+    font-size: 20;
+    margin: 50px 0 50px 0;
+    font-weight: bold;
+}
+
+.sub-text {
+    margin: 80px 25px 25px 25px;
+    text-align: center;
+    font-size: 14px;
+}
+/* #endregion */

@@ -37,10 +37,12 @@ export class LoginComponent implements OnInit {
     if (this.form.valid) {
       this.authService.logIn(this.form.value);
       let matricule: String;
+      let sessionType: String;
       setTimeout(() => {
         matricule = ApplicationSettings.getString('matricule');
+        sessionType = ApplicationSettings.getString('session_type');
       }, 500);
-      if (matricule === 'undefined') {
+      if (matricule === 'undefined' && sessionType === 'undefined') {
         Dialogs.alert('Matrícula y/o contraseña incorrectos.');
       } else {
         this.isBusy = true;
@@ -53,7 +55,7 @@ export class LoginComponent implements OnInit {
 
   buildForm() {
     this.form = this.formBuilder.group({
-      matricule: ['', [Validators.required]],
+      matricule: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('[0-9]*')]],
       password: ['', [Validators.required]]
     });
   }

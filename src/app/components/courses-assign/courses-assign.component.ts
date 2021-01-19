@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterExtensions } from '@nativescript/angular';
 
 @Component({
   selector: 'app-courses-assign',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoursesAssignComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private routerExtensions: RouterExtensions
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  goBack() {
+    this.routerExtensions.backToPreviousPage();
   }
 
 }

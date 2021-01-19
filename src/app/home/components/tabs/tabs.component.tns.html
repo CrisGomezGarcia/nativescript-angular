@@ -14,8 +14,29 @@
         </TabStripItem>
     </TabStrip>
     <TabContentItem>
-        <GridLayout>
-            <Label text="Home Page" class="h2 text-center"></Label>
+        <GridLayout rows="*,*,*" columns="*,*" class="layout-home">
+            <StackLayout row="0" col="0" class="studiants-layout" (touch)="onTouchStudents()">
+                <!-- <Image src="font://&#xf501;" class="fas fas-ico"></Image> -->
+                <Label text="Estudiantes" textWrap="true" class="title-card"></Label>
+                <Label text="&#xf501;" class="fas fas-ico background-stdudiants" textWrap="true"></Label>
+                <Label class="sub-text" text="Muestra a todos los estudiantes del plantel" textWrap="true"></Label>
+            </StackLayout>
+            <StackLayout row="0" col="1" class="groups-layout">
+                <!-- <Image src="font://&#xf501;" class="fas fas-ico"></Image> -->
+                <Label text="Grupos" textWrap="true" class="title-card"></Label>
+                <Label text="&#xf0c0;" class="fas fas-ico background-groups" textWrap="true"></Label>
+                <Label class="sub-text" text="Muestra los grupos con sus respectivos alumnos" textWrap="true"></Label>
+            </StackLayout>
+            <StackLayout row="1" col="0" class="courses-layout">
+                <!-- <Image src="font://&#xf501;" class="fas fas-ico"></Image> -->
+                <Label text="Cursos" textWrap="true" class="title-card"></Label>
+                <Label text="&#xf51c;" class="fas fas-ico background-courses" textWrap="true"></Label>
+                <Label class="sub-text" text="Muestra los cursos con los que cuenta la institución" textWrap="true"></Label>
+            </StackLayout>
+            
+            <!-- <Label row="1" col="1" text="row 1 Col 2" textWrap="true"></Label>
+            <Label row="2" col="0" text="row 2 Col 1" textWrap="true"></Label>
+            <Label row="2" col="1" text="row 2 Col 2" textWrap="true"></Label> -->
         </GridLayout>
     </TabContentItem>
     <TabContentItem>

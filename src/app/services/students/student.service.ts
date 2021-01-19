@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Student } from '@src/app/interfaces/student';
-import { User } from '@src/app/interfaces/user';
 import { environment } from '@src/environments/environment';
 import { Observable } from 'rxjs';
 
@@ -15,11 +14,12 @@ export class StudentService {
   ) { }
 
   getStudents(): Observable<Student[]> {
-    return this.http.get<Student[]>(`${environment.baseUrl}/students/`);
+    return this.http.get<Student[]>(`${environment.baseUrl}/information/students`);
   }
 
   updateStudent(student: Student): Observable<[]> {
-    return this.http.put<[]>(`${environment.baseUrl}/students/`, student);
+    student.clasification = 'ALUM';
+    return this.http.put<[]>(`${environment.baseUrl}/information/update/`, student);
   }
 
   deleteStudent(matricule: String): Observable<[]> {
@@ -27,11 +27,12 @@ export class StudentService {
   }
 
   getStudent(matricule: String): Observable<Student> {
-    return this.http.get<Student>(`${environment.baseUrl}/students/${matricule}`)
+    return this.http.get<Student>(`${environment.baseUrl}/information/students/${matricule}`);
   }
 
   saveStudent(student: Student): Observable<[]> {
-    return this.http.post<[]>(`${environment.baseUrl}/students/`, student);
+    student.clasification = 'ALUM';
+    return this.http.post<[]>(`${environment.baseUrl}/information/insert/`, student);
   }
 
 }
