@@ -42,43 +42,6 @@ export class StudentsListComponent implements OnInit {
     });
   }
 
-  onEditTap(ItemStudent: Student) {
-    this.routerExtensions.navigate(['/edit', JSON.stringify(ItemStudent)], {
-      transition: {
-        name: 'fade'
-      }
-    });
-  }
-
-  onDeleteTap(ItemStudent: Student) {
-    const matricule: string = ItemStudent.matricule;
-    const confirmOptions = {
-      title: 'Eliminar estudiante', message: `¿Seguro que desea eliminar a "${ItemStudent.name} ${ItemStudent.lastname}"?`,
-      okButtonText: 'Sí', cancelButtonText: 'No'
-    };
-    const alertOptions = { title: 'Eliminado', message: '', okButtonText: 'Aceptar' };
-    Dialogs.confirm(confirmOptions)
-      .then(result => {
-        if (result) {
-          this.studentService.deleteStudent(matricule)
-            .subscribe(
-              (response: any) => {
-                if (response.error) {
-                  alertOptions.message = 'A ocurrido un error al eliminar el registro.';
-                  Dialogs.alert(alertOptions);
-                } else {
-                  this.isBusy = true;
-                  setTimeout(() => {
-                    this.isBusy = false;
-                  }, 1000);
-                }
-              });
-        }
-      }).catch(error => {
-        console.log(error);
-      });
-  }
-
   // #region AbrirDetalles
   onItemTap(evt: ItemEventData): void {
     const index = evt.index;

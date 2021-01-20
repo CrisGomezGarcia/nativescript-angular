@@ -13,7 +13,7 @@ import { StudentService } from '@src/app/services/students/student.service';
 })
 export class StudentsEditComponent implements OnInit {
   student: Student;
-  form: FormGroup
+  form: FormGroup;
 
   constructor(
     private routerExtensions: RouterExtensions,
@@ -44,7 +44,7 @@ export class StudentsEditComponent implements OnInit {
             options.message = 'A ocurrido un error al guardar los cambios.';
             Dialogs.alert(options);
           } else {
-            options.message = 'Se guardaron los cambios correctamente.'
+            options.message = 'Se guardaron los cambios correctamente.';
             Dialogs.alert(options);
             this.goBack();
           }

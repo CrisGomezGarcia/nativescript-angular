@@ -51,14 +51,18 @@ export class StudentsDetailsComponent implements OnInit {
                 if (response.error) {
                   alertOptions.message = 'A ocurrido un error al eliminar el registro.';
                   Dialogs.alert(alertOptions);
-                } else {
-                  this.routerExtensions.navigate(['/list'], {
-                    transition: {
-                      name: 'fade'
-                    },
-                    clearHistory: true
-                  });
-                }
+                } else { }
+              },
+              error => {
+                console.log(error);
+              },
+              () => {
+                this.routerExtensions.navigate(['/list'], {
+                  transition: {
+                    name: 'fade'
+                  },
+                  clearHistory: true
+                });
               });
         }
       }).catch(error => {
@@ -67,7 +71,11 @@ export class StudentsDetailsComponent implements OnInit {
   }
 
   onEditTap() {
-
+    this.routerExtensions.navigate(['/edit', JSON.stringify(this.student)], {
+      transition: {
+        name: 'fade'
+      }
+    });
   }
 
 }
