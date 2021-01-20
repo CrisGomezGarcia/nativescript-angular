@@ -7,12 +7,6 @@ const config = {
     database: 'school',
     port: 3306
 };
-
 const connection = mysql.createPool(config);
-
-/* connection.connect(err => {
-    err ? console.error(err) : console.log('Conexion exitosa')
-}) */
-
 module.exports = connection;
 

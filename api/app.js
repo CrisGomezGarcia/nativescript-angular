@@ -4,8 +4,6 @@ const express = require('express'),
     methodOverride = require('method-override'),
     connection = require('./database/index');
 
-const jwt = require('jsonwebtoken');
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride());
