@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 /* <------------------------------------------------------ Métodos de consulta ------------------------------------------------------> */
 // #region
 
-// Método para hacer el logueo de un usuario y guardar su matrícula y su tipo de sesión
+// Método para hacer el logueo de un usuario
 app.post('/sessions/login', (req, res) => {
     const MATRICULE = req.body.matricule;
     const PASSWORD = req.body.password;
@@ -58,10 +58,10 @@ app.get('/information/students', (req, res) => {
             } else {
                 res.json(data);
             }
-        })
+        });
 });
 
-// Método para obtener un solo rgistro de tipo usuario de la base de datos que coincida con la cláusula where
+// Método para obtener un solo registro de tipo usuario de la base de datos que coincida con la cláusula where
 app.get('/information/students/:matricule', (req, res) => {
     let MATRICULE = req.params.matricule;
     connection.query('CALL select_personalInformation_studentsWmatricule(?)',
@@ -72,6 +72,18 @@ app.get('/information/students/:matricule', (req, res) => {
                 console.error(err);
             } else {
                 res.json(result);
+            }
+        });
+});
+
+// Método para obtener todos los registros de la tabla courses
+app.get('/courses', (req, res) => {
+    connection.query('CALL select_courses()',
+        (err, data, fields) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.json(data);
             }
         });
 });

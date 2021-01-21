@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RouterExtensions } from '@nativescript/angular';
 import { Dialogs } from '@nativescript/core';
-import { AuthService } from '@src/app/services/auth/auth.service';
+import { AuthService } from '@src/app/core/services/auth/auth.service';
 
 @Component({
   selector: 'app-tabs',
@@ -30,13 +30,13 @@ export class TabsComponent implements OnInit, OnDestroy {
     }, 1500);
   }
 
-  onTouchStudents() {
-    this.routeExtensions.navigate(['/list'],
+  onTouchItem(route: String) {
+    this.routeExtensions.navigate([route],
     {
       transition: {
         name: 'fade'
       }
-    })
+    });
   }
 
 }
