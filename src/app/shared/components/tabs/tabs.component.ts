@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RouterExtensions } from '@nativescript/angular';
-import { Dialogs } from '@nativescript/core';
 import { AuthService } from '@src/app/core/services/auth/auth.service';
 
 @Component({

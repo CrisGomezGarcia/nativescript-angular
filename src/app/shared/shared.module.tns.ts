@@ -2,16 +2,19 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { NativeScriptCommonModule } from '@nativescript/angular';
 
 import { FloatingButtonComponent } from './components/floating-button/floating-button.component';
+import { TabsComponent } from './components/tabs/tabs.component';
 
 @NgModule({
   declarations: [
-    FloatingButtonComponent
+    FloatingButtonComponent,
+    TabsComponent
   ],
   imports: [
-    NativeScriptCommonModule
+    NativeScriptCommonModule,
   ],
   exports: [
-    FloatingButtonComponent
+    FloatingButtonComponent,
+    TabsComponent
   ],
   schemas: [NO_ERRORS_SCHEMA]
 })

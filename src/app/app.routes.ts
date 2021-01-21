@@ -1,8 +1,6 @@
 import { Routes } from '@angular/router';
 
-import { HomeComponent } from '@src/app/home/home.component';
 import { LayoutComponent } from './components/layout/layout.component';
-import { LoginComponent } from './components/login/components/login.component';
 
 import { GuardUserGuard } from './guards/guard-user.guard';
 
@@ -19,7 +17,7 @@ export const routes: Routes = [
       {
         path: 'home',
         canActivate: [GuardUserGuard],
-        component: HomeComponent,
+        loadChildren: () => import('./home/home.module.tns').then(m => m.HomeModule)
       },
       {
         path: 'students',

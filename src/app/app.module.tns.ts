@@ -3,11 +3,8 @@ import { NativeScriptModule, NativeScriptHttpClientModule } from '@nativescript/
 
 import { AppRoutingModule } from '@src/app/app-routing.module';
 import { AppComponent } from '@src/app/app.component';
-import { HomeComponent } from '@src/app/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 
-import { NativeScriptUISideDrawerModule } from 'nativescript-ui-sidedrawer/angular';
-import { TabsComponent } from '@src/app/home/components/tabs/tabs.component';
 import { LayoutComponent } from '@src/app/components/layout/layout.component';
 import { CoreModule } from './core/core.module.tns';
 
@@ -17,8 +14,6 @@ import { CoreModule } from './core/core.module.tns';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    TabsComponent,
     LayoutComponent,
   ],
   imports: [
@@ -26,12 +21,9 @@ import { CoreModule } from './core/core.module.tns';
     AppRoutingModule,
     HttpClientModule,
     NativeScriptHttpClientModule,
-    NativeScriptUISideDrawerModule,
     CoreModule
   ],
-  exports: [
-    TabsComponent,
-  ],
+  exports: [],
   providers: [],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
