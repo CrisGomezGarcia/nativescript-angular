@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterExtensions } from '@nativescript/angular';
+import { ItemEventData } from '@nativescript/core';
 import { CourseService } from '@src/app/core/services/courses/course.service';
 import { Observable } from 'rxjs';
-import { Courses } from '../../../../core/models/courses';
+import { Course } from '../../../../core/models/courses';
 
 @Component({
   selector: 'app-courses-list',
@@ -10,8 +11,8 @@ import { Courses } from '../../../../core/models/courses';
   styleUrls: ['./courses-list.component.scss']
 })
 export class CoursesListComponent implements OnInit {
-  Courses$: Observable<Courses[]>;
-  coursesData: Courses;
+  Courses$: Observable<Course[]>;
+  coursesData: Course;
   isBusy: Boolean = true;
 
   constructor(
@@ -23,7 +24,7 @@ export class CoursesListComponent implements OnInit {
     this.loadCoursesList();
   }
 
-  goBack() {
+  goBack(): void {
     this.routerExtensions.navigate(['/home'],
       {
         transition: {
@@ -32,7 +33,7 @@ export class CoursesListComponent implements OnInit {
       });
   }
 
-  onTouch() {
+  onTouch(): void {
     this.routerExtensions.navigate(['/courses/new'], {
       transition: {
         name: 'fade'
@@ -40,7 +41,25 @@ export class CoursesListComponent implements OnInit {
     });
   }
 
-  loadCoursesList() {
+  onItemTap(evt: ItemEventData): void {
+    const index = evt.index;
+    this.Courses$
+      .subscribe(data => {
+        const selectedItem = data[0][index];
+        this.openDetails(selectedItem);
+      });
+  }
+
+  private openDetails(selectedItem: Course) {
+    const id = selectedItem['id'];
+    this.routerExtensions.navigate(['/courses/details', id], {
+      transition: {
+        name: 'fade'
+      }
+    });
+  }
+
+  loadCoursesList(): void {
     this.Courses$ = this.courseService.getCourses();
     this.Courses$.subscribe(
       data => {

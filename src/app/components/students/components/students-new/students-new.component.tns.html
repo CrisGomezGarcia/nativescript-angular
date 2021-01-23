@@ -17,9 +17,8 @@
                         *ngIf="this.matriculeField.hasError('minlength') || this.matriculeField.hasError('maxlength')"
                         text="Debe tener diez caracteres" class="errorText" textWrap="true"></Label>
                 </div>
-                <Label
-                        *ngIf="this.matriculeField.hasError('pattern')"
-                        text="Matrícula inválida" class="errorText" textWrap="true"></Label>
+                <Label *ngIf="this.matriculeField.hasError('pattern')" text="Matrícula inválida" class="errorText"
+                    textWrap="true"></Label>
             </div>
             <!-- #endregion -->
 

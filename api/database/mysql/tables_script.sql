@@ -31,3 +31,24 @@ CREATE TABLE sessions (
     CONSTRAINT FOREIGN KEY (matricule) REFERENCES personal_information(matricule),
     CONSTRAINT FOREIGN KEY (session_type) REFERENCES sessions_type(id)
 );
+
+CREATE TABLE courses(
+	id VARCHAR(10) NOT NULL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE,
+    description VARCHAR(250) NULL
+);
+
+CREATE TABLE students_has_courses(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    matricule VARCHAR(10) NOT NULL,
+    course VARCHAR(10),
+    CONSTRAINT FOREIGN KEY (matricule) REFERENCES personal_information(matricule),
+    CONSTRAINT FOREIGN KEY (course) REFERENCES courses(id)
+);
+
+INSERT INTO students_has_courses(matricule, course) VALUES('0765645831', 'TIC001');
+
+
+
+
+

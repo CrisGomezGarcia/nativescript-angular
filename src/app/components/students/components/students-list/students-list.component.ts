@@ -26,7 +26,7 @@ export class StudentsListComponent implements OnInit {
     this.loadStudentsList();
   }
 
-  goBack() {
+  goBack(): void {
     this.routerExtensions.navigate(['/home'], {
       transition: {
         name: 'fade'
@@ -34,7 +34,7 @@ export class StudentsListComponent implements OnInit {
     });
   }
 
-  onNavItemTap(NavItemTap: String) {
+  onNavItemTap(NavItemTap: String): void {
     this.routerExtensions.navigate([NavItemTap], {
       transition: {
         name: 'fade'
@@ -67,7 +67,7 @@ export class StudentsListComponent implements OnInit {
   }
   // #endregion
 
-  onSwipe(args: SwipeGestureEventData) {
+  onSwipe(args: SwipeGestureEventData): void {
     const direction = args.direction;
     if (direction === 8) {
       this.isBusy = true;
@@ -75,7 +75,7 @@ export class StudentsListComponent implements OnInit {
     }
   }
 
-  loadStudentsList() {
+  loadStudentsList(): void {
     this.Students$ = this.studentService.getStudents();
     this.Students$.subscribe(
       data => {
@@ -87,7 +87,7 @@ export class StudentsListComponent implements OnInit {
       });
   }
 
-  onTouch() {
+  onTouch(): void {
     this.routerExtensions.navigate(['/students/new'],
       {
         transition: {

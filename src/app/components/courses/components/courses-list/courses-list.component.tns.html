@@ -3,7 +3,7 @@
 </ActionBar>
 <ActivityIndicator [busy]="this.isBusy" color="green" width="65" height="65"></ActivityIndicator>
 <StackLayout class="p-10" *ngIf="isBusy === false">
-    <ListView [items]="coursesData" class="list-group" height="100%" width="100%">
+    <ListView [items]="coursesData" class="list-group" height="100%" width="100%" (itemTap)="onItemTap($event)">
         <ng-template let-item="item" let-odd="odd" let-even="even">
             <ListView.itemTemplate>
                 <StackLayout>

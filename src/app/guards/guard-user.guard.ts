@@ -20,7 +20,7 @@ export class GuardUserGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     /* console.log(this.auth.hasUser()); */
-    if (this.auth.hasStudent()) {
+    if (this.auth.hasSessionActive()) {
       return true;
     } else {
       this.routerExtensions.navigate(['/login'], {

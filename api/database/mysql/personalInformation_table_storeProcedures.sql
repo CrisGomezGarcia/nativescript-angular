@@ -1,6 +1,6 @@
 #STORED PROCEDURES PARA REALIZAR OPERACIONES A LA TABLA personal_information
 
-#STORE PROCEDURE PARA INSERTAR UN REGISTRO
+#STORED PROCEDURE PARA INSERTAR UN REGISTRO
 DELIMITER $$
 	CREATE PROCEDURE insert_personalInformation(
 		IN _MATRICULE VARCHAR(10),
@@ -16,7 +16,7 @@ DELIMITER $$
 	END$$
 DELIMITER $$
 
-#STORE PROCEDURE PARA CONSULTAR TODOS LOS REGISTROS
+#STORED PROCEDURE PARA CONSULTAR TODOS LOS REGISTROS
 DELIMITER $$
 	CREATE PROCEDURE select_personalInformation()
 	BEGIN
@@ -24,7 +24,7 @@ DELIMITER $$
 	END$$
 DELIMITER $$
 
-#STORE PROCEDURE PARA ACTUALIZAR UN REGISTRO
+#STORED PROCEDURE PARA ACTUALIZAR UN REGISTRO
 DELIMITER $$
 	CREATE PROCEDURE update_personalInformation(
 		IN _MATRICULE VARCHAR(10),
@@ -45,7 +45,7 @@ DELIMITER $$
 	END$$
 DELIMITER $$
 
-#STORE PROCEDURE PARA ELIMINAR UN REGISTRO
+#STORED PROCEDURE PARA ELIMINAR UN REGISTRO
 DELIMITER $$
 	CREATE PROCEDURE delete_personalInformation(
 		IN _MATRICULE VARCHAR(10)
@@ -55,7 +55,32 @@ DELIMITER $$
     END$$
 DELIMITER $$
 
+#STORED PROCEDURE PARA CONSULTAR LOS REGISTROS QUE TENGAN COMO CLASIFICACION "ALUMNO"
+DELIMITER $$
+	CREATE PROCEDURE select_personalInformation_students()
+    BEGIN
+		SELECT matricule, name, lastname, age, country, clasification FROM personal_information
+        WHERE clasification = 'ALUM';
+    END$$
+DELIMITER $$
+
+#STORED PROCEDURE PARA CONSULTAR EL REGISTRO DE UN ALUMNO CON SU MATRÍCULA
+DELIMITER $$
+	CREATE PROCEDURE select_personalInformation_studentsWmatricule(
+		IN _MATRICULE VARCHAR(10)
+    )
+    BEGIN
+		SELECT matricule, name, lastname, age, country, clasification FROM personal_information
+        WHERE clasification = 'ALUM' AND matricule = _MATRICULE;
+    END$$
+DELIMITER $$
 ##############################################################################################################
 #INSERCIONES
 
 #CONSULTAS
+
+call select_clasification();
+CALL select_personalInformation_students();
+call select_sessions();
+call select_sessionsType();
+call delete_personalInformation('7622497925');

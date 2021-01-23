@@ -1,1 +1,42 @@
-<Button text="courses-new works!" class="btn btn-primary"></Button>
+<ActionBar title="Nuevo curso" icon="" class="action-bar">
+    <NavigationButton icon="font://&#xf060;" class="fas fas-size-ab" (tap)="goBack()"></NavigationButton>
+</ActionBar>
+<ScrollView orientation="vertical">
+    <StackLayout class="p-20">
+        <form [formGroup]="form">
+            <!-- #region ID -->
+            <Label text="ID o Clave" textWrap="true" width="100%"></Label>
+            <TextField textTransform="upperCase" formControlName="id" hint="Escribe el ID o Clave del curso" text="" width="100%"></TextField>
+            <!-- Espacio para mostrar el error de acuerdo al tipo de validacion -->
+            <div *ngIf="this.idField.errors && this.idField.dirty">
+                <Label *ngIf="this.idField.hasError('required')" text="ID o Clave requerido" textWrap="true"
+                    class="errorText"></Label>
+                <Label *ngIf="this.idField.hasError('maxlength')" text="Máximo 10 caracteres" textWrap="true"
+                    class="errorText"></Label>
+            </div>
+            <!-- #endregion -->
+
+            <!-- #region Nombre -->
+            <Label text="Nombre" textWrap="true" width="100%"></Label>
+            <TextField formControlName="name" hint="Escribe el nombre del curso" text="" width="100%"></TextField>
+            <!-- Espacio para mostrar el error de acuerdo al tipo de validacion -->
+            <div *ngIf="this.nameField.errors && this.nameField.dirty">
+                <Label *ngIf="this.nameField.hasError('required')" text="Nombre requerido" textWrap="true"
+                    class="errorText"></Label>
+            </div>
+            <!-- #endregion -->
+
+            <!-- #region Descripcion -->
+            <Label text="Descripción" textWrap="true" width="100%"></Label>
+            <TextField formControlName="description" hint="Escribe la descripción del curso" text="" width="100%">
+            </TextField>
+            <!-- Espacio para mostrar el error de acuerdo al tipo de validacion -->
+            <div *ngIf="this.descriptionField.errors && this.descriptionField.dirty">
+                <Label *ngIf="this.descriptionField.hasError('maxlength')" text="Máximo 250 caracteres" textWrap="true"
+                    class="errorText"></Label>
+            </div>
+            <!-- #endregion -->
+            <Button [isEnabled]="this.form.invalid ? false : true" class="button" text="Guardar" (tap)="saveCourse()"></Button>
+        </form>
+    </StackLayout>
+</ScrollView>

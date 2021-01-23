@@ -39,7 +39,7 @@ export class StudentsNewComponent implements OnInit {
               options.message = 'A ocurrido un error al guardar al alumno.';
               Dialogs.alert(options);
             } else {
-              options.message = 'Se guardo correctamente.';
+              options.message = 'Se guardó correctamente.';
               Dialogs.alert(options);
               this.buildForm();
             }

@@ -20,7 +20,7 @@ export class AuthService {
   ) {
   }
 
-  hasStudent() {
+  hasSessionActive() {
     if (ApplicationSettings.getString('matricule') &&
       ApplicationSettings.getString('session_type')) {
       if (ApplicationSettings.getString('matricule') !== 'undefined' &&

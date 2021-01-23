@@ -6,15 +6,13 @@ export class AuthClass {
             return {
                 matricule: matricule,
                 sessionType: sessionType,
-                url: '/home',
-                sessionApproved: true
+                url: '/home'
             };
         }
         return {
             matricule: 'undefined',
             sessionType: 'undefined',
-            url: '/login',
-            sessionApproved: false
+            url: '/login'
         };
     }
 }

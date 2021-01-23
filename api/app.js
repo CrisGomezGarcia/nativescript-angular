@@ -1,3 +1,5 @@
+const { Key } = require('protractor');
+
 const express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
@@ -15,6 +17,122 @@ router.get('/', (req, res) => {
     res.send("Hola, mundo!")
 })
 
+
+
+/* <------------------------------------------------------ Métodos de inserción ------------------------------------------------------> */
+// #region
+
+// Método para insertar un nuevo registro en la tabla "personal_information"
+app.post('/information/insert', (req, res) => {
+    const MATRICULE = req.body.matricule;
+    const NAME = req.body.name;
+    const LASTNAME = req.body.lastname;
+    const AGE = req.body.age;
+    const COUNTRY = req.body.country;
+    const CLASIFICATION = req.body.clasification;
+    // connection.query('INSERT INTO students(matricule, name, lastname, age, country) VALUES(?, ?, ?, ?, ?)',
+    connection.query('CALL insert_personalInformation(?, ?, ?, ?, ?, ?)',
+        [MATRICULE, NAME, LASTNAME, parseInt(AGE), COUNTRY, CLASIFICATION],
+        (err, result) => {
+            if (err) {
+                res.json({ "error": true });
+                console.error(err);
+            } else {
+                /* console.info(result); */
+                res.json({ "error": false });
+            }
+        });
+});
+
+// Método para insertar un nuevo registro en la tabla "clasification"
+app.post('/clasification/insert', (req, res) => {
+    const ID = req.body.id;
+    const DESCRIPTION = req.body.description;
+    connection.query('CALL insert_clasification(?, ?)',
+        [ID, DESCRIPTION],
+        (err, result) => {
+            if (err) {
+                res.json({ "error": true });
+            } else {
+                res.json({ "error": false });
+            }
+        });
+});
+
+// Método para insertar un nuevo registro en la tabla "sessions_type"
+app.post('/sessionstype/insert', (req, res) => {
+    const ID = req.body.id;
+    const NAME = req.body.name;
+    const DESCRIPTION = req.body.description;
+    connection.query('CALL insert_sessionsType(?, ?, ?)',
+        [ID, NAME, DESCRIPTION],
+        (err, result) => {
+            if (err) {
+                res.json({ "error": true });
+            } else {
+                res.json({ "error": false });
+            }
+        })
+});
+
+// Método para insertar un nuevo registro en la tabla "sessions"
+app.post('/sessions/insert', (req, res) => {
+    const MATRICULE = req.body.matricule;
+    const PASSWORD = req.body.password;
+    const SESSIONTYPE = req.body.sessiontype;
+    connection.query('CALL insert_sessions(?, ?, ?)',
+        [MATRICULE, PASSWORD, SESSIONTYPE],
+        (err, result) => {
+            if (err) {
+                res.json({ "error": true });
+            } else {
+                res.json({ "error": false });
+            }
+        })
+});
+
+// Método para insertar un nuevo registro en la tabla "courses"
+app.post('/courses/insert', (req, res) => {
+    const ID = req.body.id;
+    const NAME = req.body.name;
+    const DESCRIPTION = req.body.description;
+    connection.query('CALL insert_courses(?, ?, ?)',
+        [ID, NAME, DESCRIPTION],
+        (err, result) => {
+            if (err) {
+                res.json({ "error": true });
+            } else {
+                res.json({ "error": false });
+            }
+        });
+});
+
+// #endregion
+
+/* <------------------------------------------------------ Métodos de actualización ------------------------------------------------------> */
+//#region 
+
+// Método para actualizar los datos de un registro en la tabla personal_information
+app.put('/information/update', (req, res) => {
+    const MATRICULE = req.body.matricule;
+    const NAME = req.body.name;
+    const LASTNAME = req.body.lastname;
+    const AGE = req.body.age;
+    const COUNTRY = req.body.country;
+    const CLASIFICATION = req.body.clasification;
+    connection.query('CALL update_personalInformation(?, ?, ?, ?, ?, ?)',
+        [MATRICULE, NAME, LASTNAME, AGE, COUNTRY, CLASIFICATION],
+        (err, result) => {
+            if (err) {
+                res.json({ "error": true });
+                console.error(err);
+            } else {
+                res.json({ "error": false });
+            }
+        });
+});
+
+//#endregion
 
 /* <------------------------------------------------------ Métodos de consulta ------------------------------------------------------> */
 // #region
@@ -63,7 +181,7 @@ app.get('/information/students', (req, res) => {
 
 // Método para obtener un solo registro de tipo usuario de la base de datos que coincida con la cláusula where
 app.get('/information/students/:matricule', (req, res) => {
-    let MATRICULE = req.params.matricule;
+    const MATRICULE = req.params.matricule;
     connection.query('CALL select_personalInformation_studentsWmatricule(?)',
         [MATRICULE],
         (err, result, fields) => {
@@ -88,106 +206,37 @@ app.get('/courses', (req, res) => {
         });
 });
 
-//#endregion
-
-/* <------------------------------------------------------ Métodos de inserción ------------------------------------------------------> */
-// #region
-
-// Método para insertar un nuevo registro en la tabla personal_information
-app.post('/information/insert', (req, res) => {
-    const MATRICULE = req.body.matricule;
-    const NAME = req.body.name;
-    const LASTNAME = req.body.lastname;
-    const AGE = req.body.age;
-    const COUNTRY = req.body.country;
-    const CLASIFICATION = req.body.clasification;
-    // connection.query('INSERT INTO students(matricule, name, lastname, age, country) VALUES(?, ?, ?, ?, ?)',
-    connection.query('CALL insert_personalInformation(?, ?, ?, ?, ?, ?)',
-        [MATRICULE, NAME, LASTNAME, parseInt(AGE), COUNTRY, CLASIFICATION],
-        (err, result) => {
+app.get('/courses/:id', (req, res) => {
+    const ID = req.params.id;
+    connection.query('CALL select_courses_id(?)',
+        [ID],
+        (err, result, fields) => {
             if (err) {
                 res.json({ "error": true });
-                console.error(err);
+                console.log(err);
             } else {
-                /* console.info(result); */
-                res.json({ "error": false });
+                res.json(result);
             }
         });
-});
-
-// Método para insertar un nuevo registro en la tabla clasification
-app.post('/clasification/insert', (req, res) => {
-    const ID = req.body.id;
-    const DESCRIPTION = req.body.description;
-    connection.query('CALL insert_clasification(?, ?)',
-        [ID, DESCRIPTION],
-        (err, result) => {
-            if (err) {
-                res.json({ "error": true });
-            } else {
-                res.json({ "error": false });
-            }
-        });
-});
-
-// Método para insertar un nuevo registro en la tabla sessions_type
-app.post('/sessionstype/insert', (req, res) => {
-    const ID = req.body.id;
-    const NAME = req.body.name;
-    const DESCRIPTION = req.body.description;
-    connection.query('CALL insert_sessionsType(?, ?, ?)',
-        [ID, NAME, DESCRIPTION],
-        (err, result) => {
-            if (err) {
-                res.json({ "error": true });
-            } else {
-                res.json({ "error": false });
-            }
-        })
-});
-
-// Método para insertar un nuevo registro en la tabla sessions
-app.post('/sessions/insert', (req, res) => {
-    const MATRICULE = req.body.matricule;
-    const PASSWORD = req.body.password;
-    const SESSIONTYPE = req.body.sessiontype;
-    connection.query('CALL insert_sessions(?, ?, ?)',
-        [MATRICULE, PASSWORD, SESSIONTYPE],
-        (err, result) => {
-            if (err) {
-                res.json({ "error": true });
-            } else {
-                res.json({ "error": false });
-            }
-        })
 })
 
-// #endregion
-
-/* <------------------------------------------------------ Métodos de actualización ------------------------------------------------------> */
-//#region 
-
-// Método para actualizar los datos de un registro en la tabla personal_information
-app.put('/information/update', (req, res) => {
-    const MATRICULE = req.body.matricule;
-    const NAME = req.body.name;
-    const LASTNAME = req.body.lastname;
-    const AGE = req.body.age;
-    const COUNTRY = req.body.country;
-    const CLASIFICATION = req.body.clasification;
-    connection.query('CALL update_personalInformation(?, ?, ?, ?, ?, ?)',
-        [MATRICULE, NAME, LASTNAME, AGE, COUNTRY, CLASIFICATION],
-        (err, result) => {
+// Método para obtener los registros de los alumnos inscritos en un curos específico
+app.get('/courses/students/:id', (req, res) => {
+    const ID = req.params.id;
+    connection.query('CALL select_studentsHasCourses_students(?)',
+        [ID],
+        (err, result, fields) => {
             if (err) {
-                res.json({ "error": true });
-                console.error(err);
+                console.log(err);
+                res.json({ "error": true })
             } else {
-                res.json({ "error": false });
+                res.json(result);
             }
         });
-});
+})
 
 //#endregion
+
 
 /* <------------------------------------------------------ Métodos de eliminación ------------------------------------------------------> */
 //#region

@@ -1,0 +1,35 @@
+<ActionBar title="Detalles del curso" icon="" class="action-bar">
+    <NavigationButton icon="font://&#xf060;" class="fas fas-size-ab" (tap)="goBack()"></NavigationButton>
+    <ActionItem ios.position="left" icon="font://&#xf304;" class="fas fas-size-ab" android.position="actionBar"
+        (tap)="onEditTap()">
+    </ActionItem>
+    <ActionItem ios.position="left" icon="font://&#xf2ed;" class="fas fas-size-ab" android.position="actionBar"
+        (tap)="onDeleteTap()">
+    </ActionItem>
+</ActionBar>
+<StackLayout>
+    <StackLayout class="container-info" height="350px">
+        <Label class="title" [text]="this.course.name" textWrap="true"></Label>
+        <Label class="subtitle" [text]="this.course.description" textWrap="true"></Label>
+    </StackLayout>
+    <StackLayout class="p-10">
+        <Label class="title-students-list" text="Alumnos inscritos" textWrap="true"></Label>
+
+        <ListView [items]="courseStudents" class="list-group" height="100%">
+            <ng-template let-item="item" let-odd="odd" let-even="even">
+                <ListView.itemTemplate>
+                    <GridLayout rows="*" columns="*,80">
+                        <Label col="0" [text]="'['+item.matricule+']   '+item.name+' '+item.lastname"
+                            class="list-group-item"></Label>
+                        <Label col="1" [text]="item.age+' años'" class="list-group-item"></Label>
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ng-template>
+        </ListView>
+
+    </StackLayout>
+</StackLayout>
+
+<StackLayout class="flt-btn-layout">
+    <app-floating-button></app-floating-button>
+</StackLayout>
