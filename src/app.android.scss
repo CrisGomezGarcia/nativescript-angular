@@ -11,7 +11,7 @@
 }
  */
 .button {
-    background-color: rgb(34, 255, 119);
+    background-color: #00caab;
     color: #fff;
     margin: 0;
     width: 100%;
@@ -26,4 +26,10 @@
 .errorText {
     color: red;
     margin-bottom: 25px;
+}
+
+.activityIndicator {
+    vertical-align: center;
+    text-align: center;
+    font-size: 12;
 }

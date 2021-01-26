@@ -6,9 +6,10 @@ import { CoursesRoutingModule } from '@src/app/components/courses/courses-routin
 import { CoursesListComponent } from '@src/app/components/courses/components/courses-list/courses-list.component';
 import { CoursesNewComponent } from '@src/app/components/courses/components/courses-new/courses-new.component';
 import { CoursesDetailsComponent } from '@src/app/components/courses/components/courses-details/courses-details.component';
+import { CoursesAddStudentsComponent } from '@src/app/components/courses/components/courses-add-students/courses-add-students.component';
 
 @NgModule({
-  declarations: [CoursesListComponent, CoursesNewComponent, CoursesDetailsComponent],
+  declarations: [CoursesListComponent, CoursesNewComponent, CoursesDetailsComponent, CoursesAddStudentsComponent],
   imports: [
     CommonModule,
     CoursesRoutingModule

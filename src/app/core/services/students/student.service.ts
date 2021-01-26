@@ -34,4 +34,9 @@ export class StudentService {
     student.clasification = 'ALUM';
     return this.http.post<[]>(`${environment.baseUrl}/information/insert`, student);
   }
+
+  getStudentsWithoutCourse(): Observable<Student[]> {
+    return this.http.get<Student[]>(`${environment.baseUrl}/information/students/withoutcourses`);
+  }
+
 }

@@ -7,12 +7,14 @@ import { CoursesListComponent } from '@src/app/components/courses/components/cou
 import { NativeScriptCommonModule } from '@nativescript/angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CoursesDetailsComponent } from '@src/app/components/courses/components/courses-details/courses-details.component';
+import { CoursesAddStudentsComponent } from '@src/app/components/courses/components/courses-add-students/courses-add-students.component';
 
 @NgModule({
   declarations: [
     CoursesNewComponent,
     CoursesListComponent,
-    CoursesDetailsComponent
+    CoursesDetailsComponent,
+    CoursesAddStudentsComponent
   ],
   imports: [
     NativeScriptCommonModule,

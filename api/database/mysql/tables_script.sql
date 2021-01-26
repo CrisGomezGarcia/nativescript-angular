@@ -40,7 +40,7 @@ CREATE TABLE courses(
 
 CREATE TABLE students_has_courses(
 	id INT AUTO_INCREMENT PRIMARY KEY,
-    matricule VARCHAR(10) NOT NULL,
+    matricule VARCHAR(10) NOT NULL UNIQUE,
     course VARCHAR(10),
     CONSTRAINT FOREIGN KEY (matricule) REFERENCES personal_information(matricule),
     CONSTRAINT FOREIGN KEY (course) REFERENCES courses(id)

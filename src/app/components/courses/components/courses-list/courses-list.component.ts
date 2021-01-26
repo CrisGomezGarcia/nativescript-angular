@@ -69,7 +69,9 @@ export class CoursesListComponent implements OnInit {
         console.log(error);
       },
       () => {
-        this.isBusy = false;
+        setTimeout(() => {
+          this.isBusy = false;
+        }, 500);
       });
   }
 

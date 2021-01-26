@@ -107,6 +107,21 @@ app.post('/courses/insert', (req, res) => {
         });
 });
 
+// Método para insertar un nuevo registro en la tabla "students_has_courses"
+app.post('/hascourses/insert', (req, res) => {
+    const MATRICULE = req.body.matricule;
+    const COURSE = req.body.course;
+    connection.query('CALL insert_studentsHasCourses(?, ?)',
+        [MATRICULE, COURSE],
+        (err, result) => {
+            if (err) {
+                res.json({ "matricule": MATRICULE, "error": true });
+            } else {
+                res.json({ "matricule": MATRICULE, "error": false });
+            }
+        });
+});
+
 // #endregion
 
 /* <------------------------------------------------------ Métodos de actualización ------------------------------------------------------> */
@@ -163,6 +178,18 @@ app.post('/sessions/login', (req, res) => {
                         "success": success
                     }
                 });
+            }
+        });
+});
+
+// Método para obtener todos los registros que sean de la clasificació 'ALUMNO' pero que no están inscritos en algún curso
+app.get('/information/students/withoutcourses', (req, res) => {
+    connection.query('CALL select_studentsHasCourses_noStudents()',
+        (err, data, fields) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.json(data);
             }
         });
 });

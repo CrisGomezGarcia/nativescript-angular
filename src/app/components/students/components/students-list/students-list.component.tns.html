@@ -1,7 +1,11 @@
 <ActionBar title="Lista de estudiantes" icon="" class="action-bar">
     <NavigationButton icon="font://&#xf060;" class="fas fas-size-ab" (tap)="goBack()"></NavigationButton>
 </ActionBar>
-<ActivityIndicator [busy]="this.isBusy" color="green" width="65" height="65"></ActivityIndicator>
+<StackLayout *ngIf="isBusy === true" class="activityIndicator" height="100%">
+    <ActivityIndicator [busy]="this.isBusy" color="green" width="65" height="65"></ActivityIndicator>
+    <Label text="Cargando" textWrap="true"></Label>
+    
+</StackLayout>
 <StackLayout class="p-10" *ngIf="isBusy === false" (swipe)="onSwipe($event)">
     <ListView [items]="studentsData" class="list-group" height="100%" width="100%" (itemTap)="onItemTap($event)">
         <ng-template let-item="item" let-odd="odd" let-even="even">

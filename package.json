@@ -32,6 +32,7 @@
     "jsonwebtoken": "^8.5.1",
     "nativescript-localstorage": "^2.0.1",
     "nativescript-sidedrawer": "^1.0.6",
+    "nativescript-sqlite": "^2.6.6",
     "nativescript-ui-sidedrawer": "^9.0.3",
     "reflect-metadata": "~0.1.12",
     "rxjs": "~6.6.0",

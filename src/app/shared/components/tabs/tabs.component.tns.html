@@ -1,5 +1,6 @@
 <StackLayout *ngIf="isBusy === true" height="100%" class="activityIndicator">
     <ActivityIndicator [busy]="isBusy" color="green" width="65" height="65"></ActivityIndicator>
+    <Label text="Cerrando sesión" textWrap="true"></Label>
 </StackLayout>
 <!-- Tabs -->
 <Tabs selectedIndex="0" tabsPosition="bottom" swipeEnabled="true" *ngIf="isBusy === false">

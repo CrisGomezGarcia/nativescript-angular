@@ -12,9 +12,12 @@
         <Label class="title" [text]="this.course.name" textWrap="true"></Label>
         <Label class="subtitle" [text]="this.course.description" textWrap="true"></Label>
     </StackLayout>
-    <StackLayout class="p-10">
+    <StackLayout *ngIf="isBusy === true" height="100%" class="activityIndicator">
+        <ActivityIndicator [busy]="this.isBusy" color="green" width="65" height="65"></ActivityIndicator>
+        <Label text="Cargando" textWrap="true"></Label>
+    </StackLayout>
+    <StackLayout *ngIf="isBusy === false" class="p-10" (swipe)="onSwipe($event)">
         <Label class="title-students-list" text="Alumnos inscritos" textWrap="true"></Label>
-
         <ListView [items]="courseStudents" class="list-group" height="100%">
             <ng-template let-item="item" let-odd="odd" let-even="even">
                 <ListView.itemTemplate>
@@ -26,10 +29,9 @@
                 </ListView.itemTemplate>
             </ng-template>
         </ListView>
-
     </StackLayout>
 </StackLayout>
 
-<StackLayout class="flt-btn-layout">
+<StackLayout class="flt-btn-layout" (touch)="onTouch()">
     <app-floating-button></app-floating-button>
 </StackLayout>
