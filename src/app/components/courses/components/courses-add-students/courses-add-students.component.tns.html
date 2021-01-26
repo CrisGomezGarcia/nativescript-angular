@@ -1,0 +1,28 @@
+<ActionBar title="Estudiantes sin curso" icon="" class="action-bar">
+    <NavigationButton icon="font://&#xf060;" class="fas fas-size-ab" (tap)="goBack()"></NavigationButton>
+</ActionBar>
+<StackLayout *ngIf="isBusy === true" height="100%" class="activityIndicator">
+    <ActivityIndicator [busy]="this.isBusy" color="green" width="65" height="65"></ActivityIndicator>
+    <Label [text]="this.isBusyOnSave === true ? 'Guardando' : 'Cargando'" textWrap="true"></Label>
+</StackLayout>
+<StackLayout class="p-10" *ngIf="isBusy === false" height="100%">
+    <GridLayout rows="*,80" columns="*">
+        <ListView row="0" [items]="studentsData" class="list-group" height="100%" width="100%">
+            <ListView.itemTemplate>
+                <ng-template let-item="item" let-odd="odd" let-even="even">
+                    <StackLayout>
+                        <GridLayout rows="*" columns="*, 90">
+                            <Label col="0" [text]="'['+item.matricule+']   '+item.name+' '+item.lastname"
+                                class="list-group-item"></Label>
+                            <Switch col="1" color="#00caab" backgroundColor="gray" offBackgroundColor="gray"
+                                 (checkedChange)="onCheckedChange(item, $event)"></Switch>
+                        </GridLayout>
+                    </StackLayout>
+                </ng-template>
+            </ListView.itemTemplate>
+        </ListView>
+        <StackLayout row="1">
+            <Button class="button" text="Guardar" (tap)="onSave()"></Button>
+        </StackLayout>
+    </GridLayout>
+</StackLayout>
