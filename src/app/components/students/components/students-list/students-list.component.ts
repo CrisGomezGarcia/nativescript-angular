@@ -70,10 +70,8 @@ export class StudentsListComponent implements OnInit {
   onSwipe(args: SwipeGestureEventData): void {
     const direction = args.direction;
     if (direction === 8) {
-      setTimeout(() => {
-        this.isBusy = true;
-        this.loadStudentsList();
-      }, 1000);
+      this.isBusy = true;
+      this.loadStudentsList();
     }
   }
 
