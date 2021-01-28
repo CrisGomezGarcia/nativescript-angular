@@ -34,7 +34,7 @@ export class CoursesAddStudentsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadListOfStudentsWithoutCourse();
-  }EventData
+  }
 
   goBack() {
     this.routerExtensions.backToPreviousPage();
@@ -50,7 +50,6 @@ export class CoursesAddStudentsComponent implements OnInit {
         e => e.matricule !== student.matricule
       );
     }
-    console.log(this.studentsAdded);
   }
 
   onSave() {

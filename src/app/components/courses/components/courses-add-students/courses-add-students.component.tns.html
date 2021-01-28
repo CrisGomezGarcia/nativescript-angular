@@ -6,7 +6,8 @@
     <Label [text]="this.isBusyOnSave === true ? 'Guardando' : 'Cargando'" textWrap="true"></Label>
 </StackLayout>
 <StackLayout class="p-10" *ngIf="isBusy === false" height="100%">
-    <GridLayout rows="*,80" columns="*">
+    <Label *ngIf="studentsData.length === 0" text="No hay registros para mostrar" textWrap="true" class="list-group-item"></Label>
+    <GridLayout rows="*,80" columns="*" *ngIf="studentsData.length > 0">
         <ListView row="0" [items]="studentsData" class="list-group" height="100%" width="100%">
             <ListView.itemTemplate>
                 <ng-template let-item="item" let-odd="odd" let-even="even">
@@ -15,14 +16,14 @@
                             <Label col="0" [text]="'['+item.matricule+']   '+item.name+' '+item.lastname"
                                 class="list-group-item"></Label>
                             <Switch col="1" color="#00caab" backgroundColor="gray" offBackgroundColor="gray"
-                                 (checkedChange)="onCheckedChange(item, $event)"></Switch>
+                                (checkedChange)="onCheckedChange(item, $event)"></Switch>
                         </GridLayout>
                     </StackLayout>
                 </ng-template>
             </ListView.itemTemplate>
         </ListView>
         <StackLayout row="1">
-            <Button class="button" text="Guardar" (tap)="onSave()"></Button>
+            <Button [isEnabled]="studentsAdded.length === 0 ? false : true" class="button" text="Guardar" (tap)="onSave()"></Button>
         </StackLayout>
     </GridLayout>
 </StackLayout>
