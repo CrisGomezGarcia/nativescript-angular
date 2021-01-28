@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { RouterExtensions } from '@nativescript/angular';
+import { Connectivity } from '@nativescript/core';
+import { getConnectionType, startMonitoring } from '@nativescript/core/connectivity';
+import { environment } from '@src/environments/environment';
 import { RadSideDrawerComponent } from 'nativescript-ui-sidedrawer/angular';
 
 @Component({
@@ -20,12 +23,37 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private routerExtensions: RouterExtensions,
-  ) { }
+  ) {
+    const type = getConnectionType();
+    switch (type) {
+      case Connectivity.connectionType.none:
+        environment.connectionActive = false;
+        break;
+      default:
+        break;
+    }
+  }
 
-  ngOnInit() { }
+  ngOnInit() {
+    startMonitoring((type) => {
+      switch (type) {
+        case Connectivity.connectionType.none:
+          environment.connectionActive = false;
+          break;
+        case Connectivity.connectionType.mobile:
+          environment.connectionActive = true;
+          break;
+        case Connectivity.connectionType.wifi:
+          environment.connectionActive = true;
+          break;
+        default:
+          break;
+      }
+    });
+  }
 
-  onTap(NavItemTap: String) {
-    this.routerExtensions.navigate([NavItemTap], {
+  onTap() {
+    this.routerExtensions.navigate(['error'], {
       transition: {
         name: 'fade'
       }

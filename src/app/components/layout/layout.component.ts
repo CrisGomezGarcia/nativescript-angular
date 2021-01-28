@@ -15,8 +15,6 @@ export class LayoutComponent implements OnInit {
     this.page.actionBarHidden = true;
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void { }
 
 }

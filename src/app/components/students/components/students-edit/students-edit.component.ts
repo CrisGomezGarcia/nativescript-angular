@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { RouterExtensions } from '@nativescript/angular';
-import { Dialogs } from '@nativescript/core';
+import { Dialogs, Page } from '@nativescript/core';
 import { Student } from '@src/app/core/models/student';
 import { StudentService } from '@src/app/core/services/students/student.service';
+import { environment } from '@src/environments/environment';
 
 @Component({
   selector: 'app-students-edit',
@@ -14,13 +15,17 @@ import { StudentService } from '@src/app/core/services/students/student.service'
 export class StudentsEditComponent implements OnInit {
   student: Student;
   form: FormGroup;
+  connectionActive: Boolean;
 
   constructor(
     private routerExtensions: RouterExtensions,
     private activateRoute: ActivatedRoute,
     private studentService: StudentService,
-    private formBuilder: FormBuilder
-  ) { }
+    private formBuilder: FormBuilder,
+    private page: Page
+  ) {
+    this.verifyConnectionOnInternet();
+  }
 
   ngOnInit(): void {
     this.activateRoute.params.subscribe(
@@ -36,19 +41,33 @@ export class StudentsEditComponent implements OnInit {
   }
 
   updateStudent() {
-    const options = { title: 'Guardar', message: '', okButtonText: 'Aceptar' };
-    if (this.form.valid) {
-      this.studentService.updateStudent(this.form.value)
-        .subscribe((response: any) => {
-          if (response.error) {
-            options.message = 'A ocurrido un error al guardar los cambios.';
-            Dialogs.alert(options);
-          } else {
-            options.message = 'Se guardaron los cambios correctamente.';
-            Dialogs.alert(options);
-            this.goBack();
-          }
-        });
+    if (this.verifyConnectionOnInternet()) {
+      const options = { title: 'Guardar', message: '', okButtonText: 'Aceptar' };
+      if (this.form.valid) {
+        this.studentService.updateStudent(this.form.value)
+          .subscribe((response: any) => {
+            if (response.error) {
+              options.message = 'A ocurrido un error al guardar los cambios.';
+              Dialogs.alert(options);
+            } else {
+              options.message = 'Se guardaron los cambios correctamente.';
+              Dialogs.alert(options);
+              this.goBack();
+            }
+          });
+      }
+    }
+  }
+
+  verifyConnectionOnInternet(): Boolean {
+    this.connectionActive = environment.connectionActive;
+    return this.connectionActive;
+  }
+
+  tryConnection(statusConnection: any) {
+    this.connectionActive = statusConnection;
+    if (this.connectionActive) {
+      this.page.actionBarHidden = false;
     }
   }
 

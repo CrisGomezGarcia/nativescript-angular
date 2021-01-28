@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  connectionActive: true,
   // baseUrl: 'http://192.168.53.2:3000' // Cable
   baseUrl: 'http://192.168.57.183:3000' // WiFi
 };

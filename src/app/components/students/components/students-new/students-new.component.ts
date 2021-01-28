@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RouterExtensions } from '@nativescript/angular';
-import { Dialogs } from '@nativescript/core';
+import { Dialogs, Page } from '@nativescript/core';
 import { Student } from '@src/app/core/models/student';
 import { StudentService } from '@src/app/core/services/students/student.service';
+import { environment } from '@src/environments/environment';
 
 @Component({
   selector: 'app-students-new',
@@ -13,12 +14,16 @@ import { StudentService } from '@src/app/core/services/students/student.service'
 export class StudentsNewComponent implements OnInit {
   form: FormGroup;
   student: Student;
+  connectionActive: Boolean;
 
   constructor(
     private routerExtensions: RouterExtensions,
     private studentService: StudentService,
-    private formBuilder: FormBuilder
-  ) { }
+    private formBuilder: FormBuilder,
+    private page: Page
+  ) {
+    this.verifyConnectionOnInternet();
+  }
 
   ngOnInit(): void {
     this.buildForm();
@@ -30,22 +35,36 @@ export class StudentsNewComponent implements OnInit {
 
   //#region StudentsMethods
   saveStudent() {
-    const options = { title: 'Guardar', message: '', okButtonText: 'Aceptar' };
-    if (this.form.valid) {
-      this.studentService.saveStudent(this.form.value)
-        .subscribe(
-          (response: any) => {
-            if (response.error) {
-              options.message = 'A ocurrido un error al guardar al alumno.';
-            } else {
-              options.message = 'Se guardó correctamente.';
-              this.buildForm();
-            }
-            Dialogs.alert(options);
-          },
-          error => {
-            Dialogs.alert(error);
-          });
+    if (this.verifyConnectionOnInternet()) {
+      const options = { title: 'Guardar', message: '', okButtonText: 'Aceptar' };
+      if (this.form.valid) {
+        this.studentService.saveStudent(this.form.value)
+          .subscribe(
+            (response: any) => {
+              if (response.error) {
+                options.message = 'Ocurrió un error al guardar.';
+              } else {
+                options.message = 'Se guardó correctamente.';
+                this.buildForm();
+              }
+              Dialogs.alert(options);
+            },
+            error => {
+              Dialogs.alert(error);
+            });
+      }
+    }
+  }
+
+  verifyConnectionOnInternet(): Boolean {
+    this.connectionActive = environment.connectionActive;
+    return this.connectionActive;
+  }
+
+  tryConnection(statusConnection: any) {
+    this.connectionActive = statusConnection;
+    if (this.connectionActive) {
+      this.page.actionBarHidden = false;
     }
   }
 

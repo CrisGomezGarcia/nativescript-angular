@@ -1,7 +1,10 @@
 <ActionBar title="Nuevo estudiante" icon="" class="action-bar">
     <NavigationButton icon="font://&#xf060;" class="fas fas-size-ab" (tap)="goBack()"></NavigationButton>
 </ActionBar>
-<ScrollView orientation="vertical">
+<StackLayout *ngIf="connectionActive === false">
+    <app-error-connection (verifyConn)="tryConnection($event)"></app-error-connection>
+</StackLayout>
+<ScrollView orientation="vertical" *ngIf="connectionActive === true">
     <StackLayout class="p-20">
         <form [formGroup]="this.form" action="">
             <!-- #region Matricula-->

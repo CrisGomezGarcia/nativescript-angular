@@ -6,7 +6,7 @@ import { AppComponent } from '@src/app/app.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { LayoutComponent } from '@src/app/components/layout/layout.component';
-import { CoreModule } from './core/core.module.tns';
+import { CoreModule } from '@src/app/core/core.module.tns';
 
 // Uncomment and add to NgModule imports if you need to use two-way binding and/or HTTP wrapper
 // import { NativeScriptFormsModule, NativeScriptHttpClientModule } from '@nativescript/angular';
@@ -14,7 +14,7 @@ import { CoreModule } from './core/core.module.tns';
 @NgModule({
   declarations: [
     AppComponent,
-    LayoutComponent,
+    LayoutComponent
   ],
   imports: [
     NativeScriptModule,
