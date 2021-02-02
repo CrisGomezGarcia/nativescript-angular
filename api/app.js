@@ -207,7 +207,7 @@ app.get('/information/students', (req, res) => {
 });
 
 // Método para obtener un solo registro de tipo usuario de la base de datos que coincida con la cláusula where
-app.get('/information/students/:matricule', (req, res) => {
+app.get('/information/students/:matricule', verifyToken, (req, res) => {
     const MATRICULE = req.params.matricule;
     connection.query('CALL select_personalInformation_studentsWmatricule(?)',
         [MATRICULE],
@@ -248,7 +248,7 @@ app.get('/courses/:id', (req, res) => {
 })
 
 // Método para obtener los registros de los alumnos inscritos en un curos específico
-app.get('/courses/students/:id', (req, res) => {
+app.get('/courses/students/:id', verifyToken, (req, res) => {
     const ID = req.params.id;
     connection.query('CALL select_studentsHasCourses_students(?)',
         [ID],
@@ -291,4 +291,19 @@ app.delete('/information/delete/:matricule', (req, res) => {
 app.listen(3000, () => {
     console.log('El servidor de Nodejs está corriendo en http://localhost:3000');
 });
+
+
+function verifyToken(req, res, next) {
+    if (!req.headers.authorization) {
+        return res.status(401).send('Unauthorized request');
+    }
+
+    const matricule = req.headers.authorization.split(' ')[1];
+    console.log(matricule);
+    if (matricule === null) {
+        return res.status(401).send('Unauthorized request');
+    }
+
+    next();
+}
 

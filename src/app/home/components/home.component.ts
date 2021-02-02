@@ -53,10 +53,6 @@ export class HomeComponent implements OnInit {
   }
 
   onTap() {
-    this.routerExtensions.navigate(['error'], {
-      transition: {
-        name: 'fade'
-      }
-    });
+
   }
 }

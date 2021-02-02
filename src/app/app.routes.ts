@@ -21,6 +21,7 @@ export const routes: Routes = [
       },
       {
         path: 'students',
+        canActivate: [GuardUserGuard],
         loadChildren: () => import('./components/students/students.module.tns').then(m => m.StudentsModule)
       },
       {
@@ -29,6 +30,7 @@ export const routes: Routes = [
       },
       {
         path: 'courses',
+        canActivate: [GuardUserGuard],
         loadChildren: () => import('./components/courses/courses.module.tns').then(m => m.CoursesModule)
       }
     ]

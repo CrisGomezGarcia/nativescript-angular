@@ -26,7 +26,8 @@ export class GuardUserGuard implements CanActivate {
       this.routerExtensions.navigate(['/login'], {
         transition: {
           name: 'fade'
-        }
+        },
+        clearHistory: true
       });
       return false;
     }

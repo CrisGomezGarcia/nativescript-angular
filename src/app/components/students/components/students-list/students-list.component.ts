@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Student } from '@src/app/core/models/student';
 import { StudentService } from '@src/app/core/services/students/student.service';
 import { RouterExtensions } from '@nativescript/angular';
-import { Dialogs, ItemEventData, Page, SwipeGestureEventData } from '@nativescript/core';
+import { ApplicationSettings, Dialogs, ItemEventData, Page, SwipeGestureEventData } from '@nativescript/core';
 import { environment } from '@src/environments/environment';
 
 @Component({
@@ -91,6 +91,9 @@ export class StudentsListComponent implements OnInit {
   }
 
   loadStudentsList(): void {
+    if (!ApplicationSettings.getString('matricule')) {
+      return;
+    }
     this.Students$ = this.studentService.getStudents();
     this.Students$.subscribe(
       data => {
